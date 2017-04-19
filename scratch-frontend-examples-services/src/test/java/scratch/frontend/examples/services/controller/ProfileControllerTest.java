@@ -29,8 +29,8 @@ public class ProfileControllerTest {
 
         // Then
         assertThat(actual.getModel(), allOf(
-            hasEntry("username", username),
-            hasEntry("user", user)
+            hasEntry("username", (Object) username),
+            hasEntry("user", (Object) user)
         ));
         assertThat(actual.getViewName(), equalTo("profile"));
     }
