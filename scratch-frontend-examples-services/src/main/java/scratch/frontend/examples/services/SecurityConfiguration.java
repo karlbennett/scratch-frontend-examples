@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import scratch.frontend.examples.services.json.JacksonStreamingJsonParser;
 import scratch.frontend.examples.services.jwt.Base64Key;
 import scratch.frontend.examples.services.jwt.JwtEncoder;
 import scratch.frontend.examples.services.security.AuthenticationFactory;
@@ -62,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             http.authorizeRequests().antMatchers("/registration").permitAll()
         );
         http.addFilterBefore(
-            new JsonToFormUrlEncodedAuthenticationFilter(new ObjectMapper(), loginPage),
+            new JsonToFormUrlEncodedAuthenticationFilter(new JacksonStreamingJsonParser(new ObjectMapper()), loginPage),
             UsernamePasswordAuthenticationFilter.class
         );
         http.addFilterBefore(
