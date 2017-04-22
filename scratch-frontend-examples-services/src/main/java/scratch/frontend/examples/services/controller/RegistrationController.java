@@ -1,5 +1,6 @@
 package scratch.frontend.examples.services.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import scratch.frontend.examples.services.data.UserRepository;
@@ -19,8 +20,13 @@ public class RegistrationController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(method = POST, consumes = {APPLICATION_FORM_URLENCODED_VALUE, APPLICATION_JSON_VALUE})
-    public void register(User user) {
+    @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE)
+    public void registerJson(@RequestBody User user) {
+        userRepository.save(user);
+    }
+
+    @RequestMapping(method = POST, consumes = APPLICATION_FORM_URLENCODED_VALUE)
+    public void registerForm(User user) {
         userRepository.save(user);
     }
 }

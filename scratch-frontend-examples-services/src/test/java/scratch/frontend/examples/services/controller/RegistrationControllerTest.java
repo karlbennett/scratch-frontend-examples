@@ -20,13 +20,26 @@ public class RegistrationControllerTest {
     }
 
     @Test
-    public void Can_register_a_new_user() {
+    public void Can_register_a_new_user_with_json() {
 
         // Given
         final User user = mock(User.class);
 
         // When
-        controller.register(user);
+        controller.registerJson(user);
+
+        // Then
+        verify(userRepository).save(user);
+    }
+
+    @Test
+    public void Can_register_a_new_user_with_a_form() {
+
+        // Given
+        final User user = mock(User.class);
+
+        // When
+        controller.registerForm(user);
 
         // Then
         verify(userRepository).save(user);

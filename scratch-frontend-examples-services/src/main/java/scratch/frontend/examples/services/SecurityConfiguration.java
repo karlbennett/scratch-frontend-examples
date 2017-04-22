@@ -55,7 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // The CSRF prevention is disabled because it greatly complicates the requirements for the sign in POST request.
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        customAuthorizeRequests.customise(http.authorizeRequests());
+        customAuthorizeRequests.customise(
+            http.authorizeRequests().antMatchers("/registration").permitAll()
+        );
         http.addFilterBefore(
             new JwtAuthenticationFilter(authenticationFactory, securityContextHolder),
             UsernamePasswordAuthenticationFilter.class
