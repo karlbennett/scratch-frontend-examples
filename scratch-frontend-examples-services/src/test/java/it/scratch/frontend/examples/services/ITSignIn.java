@@ -15,6 +15,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -22,12 +24,13 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ITConfiguration.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class ITLogin {
+public class ITSignIn {
 
     @Autowired
     private ExistingUser existingUser;
@@ -53,6 +56,25 @@ public class ITLogin {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", existingUser.getUsername());
         body.add("password", existingUser.getPassword());
+
+        // When
+        final ResponseEntity<Void> actual = restTemplate
+            .postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
+
+        // Then
+        assertThat(actual.getStatusCode(), equalTo(OK));
+    }
+
+    @Test
+    public void Can_sign_in_with_json() throws URISyntaxException {
+
+        final HttpHeaders headers = new HttpHeaders();
+        final Map<String, String> body = new HashMap<>();
+
+        // Given
+        headers.setContentType(APPLICATION_JSON);
+        body.put("username", existingUser.getUsername());
+        body.put("password", existingUser.getPassword());
 
         // When
         final ResponseEntity<Void> actual = restTemplate
