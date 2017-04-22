@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import scratch.frontend.examples.services.data.UserRepository;
 import scratch.frontend.examples.services.domain.User;
 
 import java.net.URISyntaxException;
@@ -23,14 +24,15 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
+import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ITConfiguration.class)
+@ContextConfiguration(classes = IntegrationTestConfiguration.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class ITUser {
 
     @Autowired
-    private ExistingUser existingUser;
+    private UserRepository userRepository;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -48,10 +50,11 @@ public class ITUser {
 
         final HttpHeaders headers = new HttpHeaders();
         final MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        final String username = existingUser.getUsername();
-        final String password = existingUser.getPassword();
+        final String username = someAlphanumericString(8);
+        final String password = someAlphanumericString(13);
 
         // Given
+        userRepository.save(new User(username, password));
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);

@@ -104,15 +104,39 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <!-- Enable the Spring Boot plugin so that the artifact that is built is an executable WAR. -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 
+    <dependencies>
+        <!-- Test dependencies below this point. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shiver-me-timbers</groupId>
+            <artifactId>smt-random</artifactId>
+            <version>1.8</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shiver-me-timbers</groupId>
+            <artifactId>smt-matchers</artifactId>
+            <version>1.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shiver-me-timbers</groupId>
+            <artifactId>smt-waiting-aspect</artifactId>
+            <version>4.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <modules>
+        <module>scratch-frontend-examples-integration</module>
+        <module>scratch-frontend-examples-security</module>
         <module>scratch-frontend-examples-services</module>
     </modules>
 </project>

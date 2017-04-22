@@ -29,7 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ITConfiguration.class)
+@ContextConfiguration(classes = IntegrationTestConfiguration.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class ITRegister {
 

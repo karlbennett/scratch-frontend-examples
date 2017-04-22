@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -15,15 +13,12 @@ import java.util.HashSet;
 import static java.util.Collections.singletonList;
 
 @Configuration
-@ComponentScan({"it.scratch.frontend.examples.services", "scratch.frontend.examples.services"})
+@ComponentScan({"it.scratch.frontend.examples", "scratch.frontend.examples"})
 @PropertySource("application-test.properties")
-public class ITConfiguration {
+public class IntegrationTestConfiguration {
 
     @Autowired
     private ExistingUser existingUser;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -38,7 +33,6 @@ public class ITConfiguration {
 
     @PostConstruct
     public void setup() {
-        userRepository.save(new User(existingUser.getUsername(), existingUser.getPassword()));
         restTemplate.getRestTemplate().setInterceptors(singletonList(cookieStoreRequestInterceptor));
     }
 }

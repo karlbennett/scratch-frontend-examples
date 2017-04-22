@@ -2,7 +2,6 @@ package scratch.frontend.examples.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import scratch.frontend.examples.services.json.JacksonStreamingJsonParser;
-import scratch.frontend.examples.services.jwt.Base64Key;
 import scratch.frontend.examples.services.jwt.JwtEncoder;
 import scratch.frontend.examples.services.security.AuthenticationFactory;
 import scratch.frontend.examples.services.security.CustomAuthorizeRequests;
@@ -26,8 +26,6 @@ import scratch.frontend.examples.services.security.JsonToFormUrlEncodedAuthentic
 import scratch.frontend.examples.services.security.JwtAuthenticationFilter;
 import scratch.frontend.examples.services.security.JwtAuthenticationSuccessHandler;
 import scratch.frontend.examples.services.security.SecurityContextHolder;
-
-import java.security.KeyPair;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -51,6 +49,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler delegate;
 
     @Autowired
+    private AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Autowired
+    private AuthenticationEntryPoint authenticationEntryPoint;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
@@ -72,10 +76,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         );
         http.formLogin()
             .successHandler(new JwtAuthenticationSuccessHandler(jwtEncoder, delegate))
-            .failureHandler(new Http401AuthenticationFailureHandler())
+            .failureHandler(authenticationFailureHandler)
             .loginPage(loginPage).permitAll();
         http.logout().logoutUrl("/signOut").logoutSuccessUrl("/");
-        http.exceptionHandling().authenticationEntryPoint(new Http401AuthenticationEntryPoint());
+        http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
     }
 
 
@@ -83,6 +87,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
+
+    /*
+     * The @ConditionalOnMissingBean annotation used bellow allows the configured classes to be overridden by projects
+     * that use this library. They can do this by simply adding their own implementation to the Spring context.
+     */
 
     @Bean
     @ConditionalOnMissingBean(CustomAuthorizeRequests.class)
@@ -97,8 +106,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public KeyPair keyPair(@Value("${jwt.secret}") String secret) {
-        final Base64Key key = new Base64Key(secret);
-        return new KeyPair(key, key);
+    @ConditionalOnMissingBean(AuthenticationFailureHandler.class)
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new Http401AuthenticationFailureHandler();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(AuthenticationEntryPoint.class)
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new Http401AuthenticationEntryPoint();
     }
 }

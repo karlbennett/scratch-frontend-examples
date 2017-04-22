@@ -24,7 +24,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>scratch-frontend-examples-services</artifactId>
+    <artifactId>scratch-frontend-examples-integration</artifactId>
 
     <packaging>jar</packaging>
 
@@ -32,16 +32,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>scratch</groupId>
-            <artifactId>scratch-frontend-examples-security</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- Test dependencies below this point. -->
         <dependency>
-            <groupId>scratch</groupId>
-            <artifactId>scratch-frontend-examples-integration</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

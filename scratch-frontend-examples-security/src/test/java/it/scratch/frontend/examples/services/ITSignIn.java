@@ -28,7 +28,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ITConfiguration.class)
+@ContextConfiguration(classes = IntegrationTestConfiguration.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class ITSignIn {
 
@@ -107,7 +107,7 @@ public class ITSignIn {
     public void Cannot_access_a_secure_url_when_not_signed_in() throws URISyntaxException {
 
         // When
-        final ResponseEntity<Void> actual = restTemplate.getForEntity("/user", Void.class);
+        final ResponseEntity<Void> actual = restTemplate.getForEntity("/secure", Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(UNAUTHORIZED));
@@ -127,7 +127,7 @@ public class ITSignIn {
         restTemplate.postForEntity("/signIn", entity, Void.class);
 
         // When
-        final ResponseEntity<Void> actual = restTemplate.getForEntity("/user", Void.class);
+        final ResponseEntity<Void> actual = restTemplate.getForEntity("/secure", Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
