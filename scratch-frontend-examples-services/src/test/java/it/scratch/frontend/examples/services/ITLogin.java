@@ -1,5 +1,6 @@
 package it.scratch.frontend.examples.services;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.net.URISyntaxException;
-import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
-import static scratch.frontend.examples.services.security.JwtConstants.X_AUTH_TOKEN;
 import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,6 +36,14 @@ public class ITLogin {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Autowired
+    private CookieStoreRequestInterceptor cookieStoreRequestInterceptor;
+
+    @Before
+    public void setUp() {
+        cookieStoreRequestInterceptor.clearCookies();
+    }
 
     @Test
     public void Can_sign_in() throws URISyntaxException {
@@ -98,22 +104,12 @@ public class ITLogin {
         body.add("username", existingUser.getUsername());
         body.add("password", existingUser.getPassword());
         final HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
-        final ResponseEntity<Void> login = restTemplate.postForEntity("/signIn", entity, Void.class);
-        final HttpHeaders secureHeaders = new HttpHeaders();
-        secureHeaders.add("Cookie", extractSessionCookie(login));
+        restTemplate.postForEntity("/signIn", entity, Void.class);
 
         // When
-        final ResponseEntity<Void> actual = restTemplate
-            .exchange("/user", GET, new HttpEntity<Void>(secureHeaders), Void.class);
+        final ResponseEntity<Void> actual = restTemplate.getForEntity("/user", Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
-    }
-
-    private String extractSessionCookie(ResponseEntity<Void> response) {
-        final List<String> cookies = response.getHeaders().get("Set-Cookie");
-        return cookies.stream().filter(s -> s.contains(X_AUTH_TOKEN)).findFirst()
-            .map(s -> s.split(";")[0])
-            .orElseThrow(() -> new IllegalStateException("Could not find the session cookie."));
     }
 }
