@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static scratch.frontend.examples.services.security.JwtConstants.X_AUTH_TOKEN;
+
 public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtEncoder jwtEncoder;
@@ -26,7 +28,7 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
         HttpServletResponse response,
         Authentication authentication
     ) throws IOException, ServletException {
-        final Cookie cookie = new Cookie("X-AUTH-TOKEN", jwtEncoder.encodeUsername(authentication.getName()));
+        final Cookie cookie = new Cookie(X_AUTH_TOKEN, jwtEncoder.encodeUsername(authentication.getName()));
         cookie.setComment("Authentication token for the Simple Webapp.");
         cookie.setPath("/");
         cookie.setMaxAge(-1); // Session cookie. Will be deleted on browser close.

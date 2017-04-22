@@ -1,6 +1,5 @@
 package scratch.frontend.examples.services.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -10,12 +9,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
+import static scratch.frontend.examples.services.security.JwtConstants.X_AUTH_TOKEN;
+
 @Component
 public class JwtAuthenticationFactory implements AuthenticationFactory {
 
     private final JwtDecoder jwtDecoder;
 
-    @Autowired
     public JwtAuthenticationFactory(JwtDecoder jwtDecoder) {
         this.jwtDecoder = jwtDecoder;
     }
@@ -39,7 +39,7 @@ public class JwtAuthenticationFactory implements AuthenticationFactory {
         if (cookies == null) {
             return null;
         }
-        return Arrays.stream(cookies).filter(c -> c.getName().equals("X-AUTH-TOKEN")).findFirst()
+        return Arrays.stream(cookies).filter(c -> c.getName().equals(X_AUTH_TOKEN)).findFirst()
             .map(Cookie::getValue).orElse(null);
     }
 }

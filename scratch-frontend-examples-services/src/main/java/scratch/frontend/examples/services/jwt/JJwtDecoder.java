@@ -1,6 +1,5 @@
 package scratch.frontend.examples.services.jwt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.KeyPair;
@@ -11,7 +10,6 @@ public class JJwtDecoder implements JwtDecoder {
     private final JwtParserFactory jwtParserFactory;
     private final KeyPair keyPair;
 
-    @Autowired
     public JJwtDecoder(JwtParserFactory jwtParserFactory, KeyPair keyPair) {
         this.jwtParserFactory = jwtParserFactory;
         this.keyPair = keyPair;

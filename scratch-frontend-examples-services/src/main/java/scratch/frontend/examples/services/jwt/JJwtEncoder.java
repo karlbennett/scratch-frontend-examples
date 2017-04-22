@@ -1,7 +1,6 @@
 package scratch.frontend.examples.services.jwt;
 
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +21,6 @@ public class JJwtEncoder implements JwtEncoder {
     private final Long duration;
     private final ChronoUnit unit;
 
-    @Autowired
     public JJwtEncoder(
         JwtBuilderFactory jwtBuilderFactory,
         KeyPair keyPair,

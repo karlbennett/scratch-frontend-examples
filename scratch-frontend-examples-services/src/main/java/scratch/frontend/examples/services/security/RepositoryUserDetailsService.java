@@ -1,6 +1,5 @@
 package scratch.frontend.examples.services.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +13,6 @@ public class RepositoryUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final UserDetailsFactory userDetailsFactory;
 
-    @Autowired
     public RepositoryUserDetailsService(UserRepository userRepository, UserDetailsFactory userDetailsFactory) {
         this.userRepository = userRepository;
         this.userDetailsFactory = userDetailsFactory;

@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static scratch.frontend.examples.services.security.JwtConstants.X_AUTH_TOKEN;
 import static shiver.me.timbers.data.random.RandomStrings.someString;
 
 public class JwtAuthenticationFactoryTest {
@@ -42,7 +43,7 @@ public class JwtAuthenticationFactoryTest {
         given(request.getCookies()).willReturn(new Cookie[]{cookie1, jwtCookie, cookie1});
         given(cookie1.getName()).willReturn(someString());
         given(cookie2.getName()).willReturn(someString());
-        given(jwtCookie.getName()).willReturn("X-AUTH-TOKEN");
+        given(jwtCookie.getName()).willReturn(X_AUTH_TOKEN);
         given(jwtCookie.getValue()).willReturn(jwtToken);
         given(jwtDecoder.decodeUsername(jwtToken)).willReturn(username);
 

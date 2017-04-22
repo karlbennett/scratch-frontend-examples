@@ -19,6 +19,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
+import static scratch.frontend.examples.services.security.JwtConstants.X_AUTH_TOKEN;
 import static shiver.me.timbers.data.random.RandomStrings.someString;
 
 public class JwtAuthenticationSuccessHandlerTest {
@@ -49,7 +50,7 @@ public class JwtAuthenticationSuccessHandlerTest {
         order.verify(response).addCookie(cookieCaptor.capture());
         order.verify(delegate).onAuthenticationSuccess(request, response, authentication);
         final Cookie cookie = cookieCaptor.getValue();
-        assertThat(cookie.getName(), is("X-AUTH-TOKEN"));
+        assertThat(cookie.getName(), is(X_AUTH_TOKEN));
         assertThat(cookie.getValue(), is(jwtToken));
         assertThat(cookie.getComment(), is("Authentication token for the Simple Webapp."));
         assertThat(cookie.getDomain(), nullValue());
