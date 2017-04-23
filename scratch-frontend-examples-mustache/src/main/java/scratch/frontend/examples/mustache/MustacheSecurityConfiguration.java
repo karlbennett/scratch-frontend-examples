@@ -1,0 +1,37 @@
+package scratch.frontend.examples.mustache;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
+
+@Configuration
+public class MustacheSecurityConfiguration {
+
+    @Bean
+    public CustomAuthorizeRequests mustacheCustomAuthorizeRequests() {
+        return (authorizeRequests) -> authorizeRequests
+            .antMatchers(
+                "/",
+                "/favicon.ico",
+                "/scripts/*",
+                "/css/*",
+                "/registration",
+                "/registration/success"
+            ).permitAll()
+            .anyRequest().authenticated();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler delegate() {
+        return new SimpleUrlAuthenticationSuccessHandler("/");
+    }
+
+    @Bean
+    public AuthenticationFailureHandler mustacheAuthenticationFailureHandler() {
+        return new SimpleUrlAuthenticationFailureHandler("/");
+    }
+}

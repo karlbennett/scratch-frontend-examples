@@ -1,0 +1,44 @@
+@import "variables";
+
+body {
+  margin: 0;
+  padding: 0 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: $font-colour;
+}
+
+.header-container {
+  height: 40px;
+  border-bottom: $grey solid 1px;
+  padding: 0 10px;
+
+  a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: $font-colour;
+  }
+
+  .menu, .signin {
+    padding: 10px 0;
+
+    a {
+      padding: 0 10px;
+      border-right: $grey solid 1px;
+    }
+    a:first-child {
+      padding-left: 0;
+    }
+    a:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+
+  .signin {
+    float: right;
+  }
+}
+
+.content-container {
+  padding: 0 10px;
+}
+

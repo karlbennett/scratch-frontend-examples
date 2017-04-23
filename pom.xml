@@ -133,5 +133,6 @@
         <module>scratch-frontend-examples-security</module>
         <module>scratch-frontend-examples-services</module>
         <module>scratch-frontend-examples-acceptance</module>
+        <module>scratch-frontend-examples-mustache</module>
     </modules>
 </project>

@@ -1,0 +1,16 @@
+@import "variables";
+
+.form {
+  .input {
+
+    padding: 10px 5px;
+
+    label {
+      display: inline-block;
+      margin-right: 10px;
+      width: 90px;
+      font-weight: bold;
+    }
+  }
+}
+
