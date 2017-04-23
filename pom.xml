@@ -126,17 +126,12 @@
             <version>1.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.shiver-me-timbers</groupId>
-            <artifactId>smt-waiting-aspect</artifactId>
-            <version>4.1</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <modules>
         <module>scratch-frontend-examples-integration</module>
         <module>scratch-frontend-examples-security</module>
         <module>scratch-frontend-examples-services</module>
+        <module>scratch-frontend-examples-acceptance</module>
     </modules>
 </project>
