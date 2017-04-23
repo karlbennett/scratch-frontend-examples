@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #2b2b2b;
+}
+
+.header-container {
+    height: 40px;
+    border-bottom: #929292 solid 1px;
+    padding: 0 10px;
+}
+
+.header-container a:link, .header-container a:visited, .header-container a:hover, .header-container a:active {
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+.header-container .menu, .header-container .signin {
+    padding: 10px 0;
+}
+
+.header-container .menu a, .header-container .signin a {
+    padding: 0 10px;
+    border-right: #929292 solid 1px;
+}
+
+.header-container .menu a:first-child, .header-container .signin a:first-child {
+    padding-left: 0;
+}
+
+.header-container .menu a:last-child, .header-container .signin a:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+.header-container .signin {
+    float: right;
+}
+
+.content-container {
+    padding: 0 10px;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -137,11 +137,8 @@
     </dependencies>
 
     <modules>
-        <module>scratch-frontend-examples-data</module>
-        <module>scratch-frontend-examples-integration</module>
-        <module>scratch-frontend-examples-security</module>
-        <module>scratch-frontend-examples-services</module>
-        <module>scratch-frontend-examples-acceptance</module>
+        <module>scratch-frontend-examples-backend</module>
+        <module>scratch-frontend-examples-test</module>
         <module>scratch-frontend-examples-mustache</module>
     </modules>
 </project>

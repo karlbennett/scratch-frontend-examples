@@ -1,5 +1,5 @@
 scratch-frontend-examples-mustache
-==============
+==================================
 
 This project demonstrates a range of features across multiple frameworks and tools including
 [Maven](https://maven.apache.org/), [Spring Boot](http://projects.spring.io/spring-boot/),

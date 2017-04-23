@@ -24,25 +24,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>scratch-frontend-examples-services</artifactId>
+    <artifactId>scratch-frontend-examples-backend</artifactId>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>scratch</groupId>
-            <artifactId>scratch-frontend-examples-security</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Test dependencies below this point. -->
-        <dependency>
-            <groupId>scratch</groupId>
-            <artifactId>scratch-frontend-examples-integration</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>scratch-frontend-examples-data</module>
+        <module>scratch-frontend-examples-security</module>
+        <module>scratch-frontend-examples-services</module>
+    </modules>
 </project>

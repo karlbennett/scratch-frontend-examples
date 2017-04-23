@@ -58,21 +58,25 @@ public class SeleniumHomePage implements HomePage {
         }
     }
 
+    @Wait
     @Override
     public void clickRegister() {
         clickLinkByText("Register");
     }
 
+    @Wait
     @Override
     public void clickSignIn() {
         clickLinkByText("Sign In");
     }
 
+    @Wait
     @Override
     public void clickSignOut() {
         clickLinkByText("Sign Out");
     }
 
+    @Wait
     @Override
     public boolean isCurrentPage() {
         return "Simple Webapp (Home)".equals(driver.getTitle());
