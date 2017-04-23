@@ -6,6 +6,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
 
 @Configuration
@@ -26,8 +28,13 @@ public class MustacheSecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationSuccessHandler delegate() {
+    public AuthenticationSuccessHandler loginDelegate() {
         return new SimpleUrlAuthenticationSuccessHandler("/");
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutDelegate() {
+        return new SimpleUrlLogoutSuccessHandler();
     }
 
     @Bean

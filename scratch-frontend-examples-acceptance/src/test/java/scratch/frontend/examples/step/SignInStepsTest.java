@@ -67,6 +67,26 @@ public class SignInStepsTest {
     }
 
     @Test
+    public void Can_be_signed_in_to_an_existing_account() {
+
+        final User user = mock(User.class);
+
+        // Given
+        given(userFactory.createExisting()).willReturn(user);
+        given(userHolder.get()).willReturn(user);
+
+        // When
+        inSteps.I_am_signed_in();
+
+        // Then
+        final InOrder order = inOrder(userHolder, homePage, signInPage);
+        order.verify(userHolder).set(user);
+        order.verify(homePage).visit();
+        order.verify(homePage).clickSignIn();
+        order.verify(signInPage).signIn(user);
+    }
+
+    @Test
     public void Can_check_that_the_current_page_is_the_home_page() {
 
         // Given
@@ -90,7 +110,7 @@ public class SignInStepsTest {
     }
 
     @Test
-    public void Can_check_that_the_account_is_signed_in() {
+    public void Can_check_that_the_user_is_signed_in() {
 
         final User user = mock(User.class);
 
@@ -99,24 +119,25 @@ public class SignInStepsTest {
         // Given
         given(userHolder.get()).willReturn(user);
         given(user.getUsername()).willReturn(username);
-        given(homePage.getUsername()).willReturn(username);
+        given(homePage.isSignedIn(username)).willReturn(true);
 
         // When
         inSteps.I_should_see_that_I_am_signed_in();
 
         // Then
-        verify(homePage).getUsername();
+        verify(homePage).isSignedIn(username);
     }
 
     @Test(expected = AssertionError.class)
-    public void Can_check_that_the_account_is_not_signed_in() {
+    public void Can_check_that_the_user_is_not_signed_when_they_are_actually_signed_out() {
 
         final User user = mock(User.class);
+        final String username = someString();
 
         // Given
         given(userHolder.get()).willReturn(user);
-        given(user.getUsername()).willReturn(someString());
-        given(homePage.getUsername()).willReturn(someString());
+        given(user.getUsername()).willReturn(username);
+        given(homePage.isSignedIn(username)).willReturn(false);
 
         // When
         inSteps.I_should_see_that_I_am_signed_in();
@@ -142,7 +163,7 @@ public class SignInStepsTest {
         // Given
         given(userHolder.get()).willReturn(user);
         given(user.getUsername()).willReturn(username);
-        given(homePage.getUsername()).willReturn(username);
+        given(homePage.isSignedIn(username)).willReturn(true);
 
         // When
         inSteps.I_should_be_able_to_sign_in();
@@ -152,18 +173,19 @@ public class SignInStepsTest {
         order.verify(homePage).visit();
         order.verify(homePage).clickSignIn();
         order.verify(signInPage).signIn(user);
-        order.verify(homePage).getUsername();
+        order.verify(homePage).isSignedIn(username);
     }
 
     @Test(expected = AssertionError.class)
     public void Can_check_that_the_user_cannot_sign_in() {
 
         final User user = mock(User.class);
+        final String username = someString();
 
         // Given
         given(userHolder.get()).willReturn(user);
-        given(user.getUsername()).willReturn(someString());
-        given(homePage.getUsername()).willReturn(someString());
+        given(user.getUsername()).willReturn(username);
+        given(homePage.isSignedIn(username)).willReturn(false);
 
         // When
         inSteps.I_should_be_able_to_sign_in();

@@ -1,5 +1,6 @@
 package scratch.frontend.examples.security.spring;
 
+import io.jsonwebtoken.JwtException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.Authentication;
@@ -88,6 +89,31 @@ public class JwtAuthenticationFactoryTest {
         given(cookie1.getName()).willReturn(someString());
         given(cookie2.getName()).willReturn(someString());
         given(cookie3.getName()).willReturn(someString());
+
+        // When
+        final Authentication actual = factory.create(request);
+
+        // Then
+        assertThat(actual, nullValue());
+    }
+
+    @Test
+    public void Can_create_a_jwt_authentication_from_an_invalid_token() {
+
+        final HttpServletRequest request = mock(HttpServletRequest.class);
+
+        final Cookie cookie1 = mock(Cookie.class);
+        final Cookie cookie2 = mock(Cookie.class);
+        final Cookie jwtCookie = mock(Cookie.class);
+        final String jwtToken = someString();
+
+        // Given
+        given(request.getCookies()).willReturn(new Cookie[]{cookie1, jwtCookie, cookie1});
+        given(cookie1.getName()).willReturn(someString());
+        given(cookie2.getName()).willReturn(someString());
+        given(jwtCookie.getName()).willReturn(X_AUTH_TOKEN);
+        given(jwtCookie.getValue()).willReturn(jwtToken);
+        given(jwtDecoder.decodeUsername(jwtToken)).willThrow(mock(JwtException.class));
 
         // When
         final Authentication actual = factory.create(request);

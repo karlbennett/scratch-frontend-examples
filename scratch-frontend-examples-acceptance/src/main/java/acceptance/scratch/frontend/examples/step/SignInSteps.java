@@ -31,6 +31,12 @@ public class SignInSteps {
         userHolder.set(userFactory.createExisting());
     }
 
+    @Given("^I am signed in$")
+    public void I_am_signed_in() {
+        I_am_an_existing_user();
+        I_sign_in();
+    }
+
     @When("^I sign in$")
     public void I_sign_in() {
         homePage.visit();
@@ -45,7 +51,7 @@ public class SignInSteps {
 
     @Then("^I should see that I am signed in$")
     public void I_should_see_that_I_am_signed_in() {
-        assertThat("Should see username on the homepage.", homePage.getUsername(), is(userHolder.get().getUsername()));
+        assertThat("The correct user should be signed in.", homePage.isSignedIn(userHolder.get().getUsername()), is(true));
     }
 
     @Then("^I should be able to sign out$")

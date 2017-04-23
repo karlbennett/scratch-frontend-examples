@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
@@ -134,5 +135,28 @@ public class ITSignIn {
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
+    }
+
+    @Test
+    public void Can_sign_out() throws URISyntaxException {
+
+        final HttpHeaders headers = new HttpHeaders();
+        final MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+
+        // Given
+        headers.setContentType(APPLICATION_FORM_URLENCODED);
+        body.add("username", existingUser.getUsername());
+        body.add("password", existingUser.getPassword());
+        restTemplate.postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
+
+        // When
+        final ResponseEntity<Void> actual = restTemplate.getForEntity("/signOut", Void.class);
+
+        // Then
+        assertThat(actual.getStatusCode(), equalTo(OK));
+        final String jwtCookie = actual.getHeaders().get("Set-Cookie").get(0);
+        assertThat(jwtCookie, containsString("X-AUTH-TOKEN=;"));
+        assertThat(jwtCookie, containsString("Max-Age=0;"));
+        assertThat(jwtCookie, containsString("path=/;"));
     }
 }

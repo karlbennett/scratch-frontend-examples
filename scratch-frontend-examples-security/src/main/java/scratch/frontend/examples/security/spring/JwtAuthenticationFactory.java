@@ -1,5 +1,8 @@
 package scratch.frontend.examples.security.spring;
 
+import io.jsonwebtoken.JwtException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -14,6 +17,8 @@ import static scratch.frontend.examples.security.spring.JwtConstants.X_AUTH_TOKE
 @Component
 public class JwtAuthenticationFactory implements AuthenticationFactory {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     private final JwtDecoder jwtDecoder;
 
     public JwtAuthenticationFactory(JwtDecoder jwtDecoder) {
@@ -27,11 +32,16 @@ public class JwtAuthenticationFactory implements AuthenticationFactory {
         if (jwtToken == null) {
             return null;
         }
-        return new UsernamePasswordAuthenticationToken(
-            jwtDecoder.decodeUsername(jwtToken),
-            null,
-            null
-        );
+        try {
+            return new UsernamePasswordAuthenticationToken(
+                jwtDecoder.decodeUsername(jwtToken),
+                null,
+                null
+            );
+        } catch (JwtException e) {
+            log.warn("JWT token is invalid.", e);
+            return null;
+        }
     }
 
     private String extractJetCookieValue(HttpServletRequest request) {

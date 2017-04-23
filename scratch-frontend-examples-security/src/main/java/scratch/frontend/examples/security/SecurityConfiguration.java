@@ -15,16 +15,19 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import scratch.frontend.examples.security.json.JacksonStreamingJsonParser;
 import scratch.frontend.examples.security.jwt.JwtEncoder;
 import scratch.frontend.examples.security.spring.AuthenticationFactory;
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
 import scratch.frontend.examples.security.spring.Http200AuthenticationSuccessHandler;
+import scratch.frontend.examples.security.spring.Http200LogoutSuccessHandler;
 import scratch.frontend.examples.security.spring.Http401AuthenticationEntryPoint;
 import scratch.frontend.examples.security.spring.Http401AuthenticationFailureHandler;
 import scratch.frontend.examples.security.spring.JsonToFormUrlEncodedAuthenticationFilter;
 import scratch.frontend.examples.security.spring.JwtAuthenticationFilter;
 import scratch.frontend.examples.security.spring.JwtAuthenticationSuccessHandler;
+import scratch.frontend.examples.security.spring.JwtLogoutSuccessHandler;
 import scratch.frontend.examples.security.spring.SecurityContextHolder;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -46,10 +49,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private JwtEncoder jwtEncoder;
 
     @Autowired
-    private AuthenticationSuccessHandler delegate;
+    private AuthenticationSuccessHandler loginDelegate;
 
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Autowired
+    private LogoutSuccessHandler logoutDelegate;
 
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
@@ -75,10 +81,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             UsernamePasswordAuthenticationFilter.class
         );
         http.formLogin()
-            .successHandler(new JwtAuthenticationSuccessHandler(jwtEncoder, delegate))
+            .successHandler(new JwtAuthenticationSuccessHandler(jwtEncoder, loginDelegate))
             .failureHandler(authenticationFailureHandler)
             .loginPage(loginPage).permitAll();
-        http.logout().logoutUrl("/signOut").logoutSuccessUrl("/");
+        http.logout()
+            .logoutSuccessHandler(new JwtLogoutSuccessHandler(logoutDelegate))
+            .logoutUrl("/signOut");
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
     }
 
@@ -101,8 +109,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     @ConditionalOnMissingBean(AuthenticationSuccessHandler.class)
-    public AuthenticationSuccessHandler delegate() {
+    public AuthenticationSuccessHandler loginDelegate() {
         return new Http200AuthenticationSuccessHandler();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(LogoutSuccessHandler.class)
+    public LogoutSuccessHandler logoutDelegate() {
+        return new Http200LogoutSuccessHandler();
     }
 
     @Bean

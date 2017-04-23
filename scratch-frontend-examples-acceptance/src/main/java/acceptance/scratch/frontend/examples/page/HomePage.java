@@ -4,6 +4,10 @@ public interface HomePage {
 
     void visit();
 
+    boolean isSignedIn(String username);
+
+    boolean isSignedOut();
+
     void clickRegister();
 
     void clickSignIn();

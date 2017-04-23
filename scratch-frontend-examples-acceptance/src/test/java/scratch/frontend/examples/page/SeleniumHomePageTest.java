@@ -4,6 +4,7 @@ import acceptance.scratch.frontend.examples.finder.Finders;
 import acceptance.scratch.frontend.examples.page.SeleniumHomePage;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -37,6 +38,62 @@ public class SeleniumHomePageTest {
 
         // Then
         verify(driver).get(homePageUrl);
+    }
+
+    @Test
+    public void Can_check_the_the_user_is_signed_in() {
+
+        final String username = someString();
+
+        // Given
+        given(finders.findByText("a", username)).willReturn(mock(WebElement.class));
+
+        // When
+        final boolean actual = page.isSignedIn(username);
+
+        // Then
+        assertThat(actual, is(true));
+    }
+
+    @Test
+    public void Can_check_the_the_user_is_not_signed_in() {
+
+        final String username = someString();
+
+        // Given
+        given(finders.findByText("a", username)).willThrow(mock(NoSuchElementException.class));
+
+        // When
+        final boolean actual = page.isSignedIn(username);
+
+        // Then
+        assertThat(actual, is(false));
+    }
+
+    @Test
+    public void Can_check_the_the_user_is_signed_out() {
+
+        // Given
+        given(finders.findByText("a", "Sign In")).willReturn(mock(WebElement.class));
+
+        // When
+        final boolean actual = page.isSignedOut();
+
+        // Then
+        assertThat(actual, is(true));
+    }
+
+    @Test
+    public void Can_check_the_the_user_is_not_signed_out() {
+
+        // Given
+        given(finders.findByText("a", "Sign In")).willThrow(mock(NoSuchElementException.class));
+
+        // When
+        final boolean actual = page.isSignedOut();
+
+        // Then
+        assertThat(actual, is(false));
     }
 
     @Test

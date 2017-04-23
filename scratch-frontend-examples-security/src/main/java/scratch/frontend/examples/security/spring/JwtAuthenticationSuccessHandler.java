@@ -15,11 +15,11 @@ import static scratch.frontend.examples.security.spring.JwtConstants.X_AUTH_TOKE
 public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtEncoder jwtEncoder;
-    private final AuthenticationSuccessHandler delegate;
+    private final AuthenticationSuccessHandler loginDelegate;
 
-    public JwtAuthenticationSuccessHandler(JwtEncoder jwtEncoder, AuthenticationSuccessHandler delegate) {
+    public JwtAuthenticationSuccessHandler(JwtEncoder jwtEncoder, AuthenticationSuccessHandler loginDelegate) {
         this.jwtEncoder = jwtEncoder;
-        this.delegate = delegate;
+        this.loginDelegate = loginDelegate;
     }
 
     @Override
@@ -35,6 +35,6 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
         cookie.setSecure(false); // Is insecure so that this can be easily run locally.
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        delegate.onAuthenticationSuccess(request, response, authentication);
+        loginDelegate.onAuthenticationSuccess(request, response, authentication);
     }
 }
