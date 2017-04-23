@@ -139,6 +139,7 @@
     <modules>
         <module>scratch-frontend-examples-backend</module>
         <module>scratch-frontend-examples-test</module>
+        <module>scratch-frontend-examples-sass</module>
         <module>scratch-frontend-examples-mustache</module>
     </modules>
 </project>

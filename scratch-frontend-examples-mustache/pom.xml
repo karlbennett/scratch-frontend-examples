@@ -79,22 +79,6 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <!-- Compile the SASS into CSS. -->
-                <groupId>nl.geodienstencentrum.maven</groupId>
-                <artifactId>sass-maven-plugin</artifactId>
-                <version>2.23</version>
-                <configuration>
-                    <destination>${project.build.outputDirectory}/META-INF/resources/css</destination>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>update-stylesheets</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <!-- Enable the Spring Boot plugin so that the artifact that is built is an executable WAR. -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -113,6 +97,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>scratch</groupId>
+            <artifactId>scratch-frontend-examples-sass</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>scratch</groupId>
             <artifactId>scratch-frontend-examples-security</artifactId>
