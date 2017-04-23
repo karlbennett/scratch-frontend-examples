@@ -1,6 +1,6 @@
 package acceptance.scratch.frontend.examples.domain;
 
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.domain.User;
 
 public interface UserFactory {
 

@@ -2,8 +2,8 @@ package acceptance.scratch.frontend.examples.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.data.UserRepository;
+import scratch.frontend.examples.security.domain.User;
 
 import static shiver.me.timbers.data.random.RandomStrings.buildSomeString;
 
@@ -27,7 +27,7 @@ public class RandomUserFactory implements UserFactory {
 
     @Override
     public User createExisting() {
-        final scratch.frontend.examples.services.domain.User user = userRepository.save(new scratch.frontend.examples.services.domain.User(
+        final User user = userRepository.save(new User(
             buildSomeString().thatContainsAlphanumericCharacters().withLengthBetween(1, 10).build(),
             buildSomeString().thatContainsAlphanumericCharacters().withLengthBetween(1, 10).build()
         ));

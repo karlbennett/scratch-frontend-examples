@@ -3,7 +3,7 @@ package scratch.frontend.examples.page;
 import acceptance.scratch.frontend.examples.finder.Finders;
 import acceptance.scratch.frontend.examples.page.SeleniumSignInPage;
 import org.junit.Test;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.domain.User;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;

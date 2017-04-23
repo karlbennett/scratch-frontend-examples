@@ -3,7 +3,7 @@ package acceptance.scratch.frontend.examples.page;
 import acceptance.scratch.frontend.examples.finder.Finders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.domain.User;
 
 @Component
 public class SeleniumSignInPage implements SignInPage {

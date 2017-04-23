@@ -1,8 +1,8 @@
 package scratch.frontend.examples.services.controller;
 
 import org.junit.Test;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.data.UserRepository;
+import scratch.frontend.examples.security.domain.User;
 
 import java.security.Principal;
 

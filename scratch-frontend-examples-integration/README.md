@@ -106,7 +106,7 @@ generate an executable WAR that can be run in isolation or deployed to an existi
 
 Spring Security is used to add sign in functionality to the application, it is configured in the
 [`SecurityConfiguration`](src/main/java/scratch/simple/webapp/SecurityConfiguration.java) class and any other additional
-classes can be found under the [scratch.frontend.examples.services.security](src/main/java/scratch/frontend/examples/services/security/) package.
+classes can be found under the [scratch.frontend.examples.security.spring](src/main/java/scratch/frontend/examples/services/security/) package.
 
 ##### Spring MVC
 

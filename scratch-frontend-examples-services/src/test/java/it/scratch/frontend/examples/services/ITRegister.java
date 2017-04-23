@@ -15,8 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.data.UserRepository;
+import scratch.frontend.examples.security.domain.User;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;

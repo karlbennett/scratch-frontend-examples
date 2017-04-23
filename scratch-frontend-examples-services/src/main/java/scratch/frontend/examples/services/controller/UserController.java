@@ -2,8 +2,8 @@ package scratch.frontend.examples.services.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.data.UserRepository;
+import scratch.frontend.examples.security.domain.User;
 
 import java.security.Principal;
 

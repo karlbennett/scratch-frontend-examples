@@ -3,8 +3,8 @@ package scratch.frontend.examples.domain;
 import acceptance.scratch.frontend.examples.domain.RandomUserFactory;
 import org.junit.Before;
 import org.junit.Test;
-import scratch.frontend.examples.services.data.UserRepository;
-import scratch.frontend.examples.services.domain.User;
+import scratch.frontend.examples.security.data.UserRepository;
+import scratch.frontend.examples.security.domain.User;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.greaterThan;
@@ -41,14 +41,14 @@ public class RandomUserFactoryTest {
     @Test
     public void Can_create_a_random_existing_user() {
 
-        final scratch.frontend.examples.services.domain.User user =
-            mock(scratch.frontend.examples.services.domain.User.class);
+        final scratch.frontend.examples.security.domain.User user =
+            mock(scratch.frontend.examples.security.domain.User.class);
 
         final String username = someString();
         final String password = someString();
 
         // Given
-        given(userRepository.save(any(scratch.frontend.examples.services.domain.User.class))).willReturn(user);
+        given(userRepository.save(any(scratch.frontend.examples.security.domain.User.class))).willReturn(user);
         given(user.getUsername()).willReturn(username);
         given(user.getPassword()).willReturn(password);
 
