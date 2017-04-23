@@ -37,48 +37,6 @@
     <build>
         <plugins>
             <plugin>
-                <!-- This will run the JavaScript unit tests during the build. -->
-                <groupId>com.github.searls</groupId>
-                <artifactId>jasmine-maven-plugin</artifactId>
-                <version>2.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jsSrcDir>${project.basedir}/src/main/resources/META-INF/resources/scripts</jsSrcDir>
-                    <sourceExcludes>
-                        <exclude>**/*-page.js</exclude>
-                    </sourceExcludes>
-                    <webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>
-                    <preloadSources>
-                        <source>webjars/jshamcrest.js</source>
-                        <source>webjars/jsmockito.js</source>
-                        <source>webjars/jsmockito-jshamcrest-integration.js</source>
-                    </preloadSources>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jshamcrest</artifactId>
-                        <version>0.7.0</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jsmockito</artifactId>
-                        <version>1.0.4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jsmockito-jshamcrest-integration</artifactId>
-                        <version>0.0.6</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <!-- Enable the Spring Boot plugin so that the artifact that is built is an executable WAR. -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

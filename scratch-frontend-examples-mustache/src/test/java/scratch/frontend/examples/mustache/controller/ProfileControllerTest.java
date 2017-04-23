@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 import scratch.frontend.examples.domain.User;
 
-import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertThat;
@@ -28,10 +27,7 @@ public class ProfileControllerTest {
         final ModelAndView actual = new ProfileController().profile(user);
 
         // Then
-        assertThat(actual.getModel(), allOf(
-            hasEntry("username", (Object) username),
-            hasEntry("user", (Object) user)
-        ));
+        assertThat(actual.getModel(), hasEntry("username", username));
         assertThat(actual.getViewName(), equalTo("profile"));
     }
 }
