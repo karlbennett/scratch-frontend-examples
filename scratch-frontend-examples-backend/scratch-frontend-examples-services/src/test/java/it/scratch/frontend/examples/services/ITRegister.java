@@ -65,7 +65,7 @@ public class ITRegister {
 
         // When
         final ResponseEntity<Void> actual = restTemplate
-            .postForEntity("/registration", new HttpEntity<>(body, headers), Void.class);
+            .postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
@@ -90,7 +90,7 @@ public class ITRegister {
 
         // When
         final ResponseEntity<Void> actual = restTemplate
-            .postForEntity("/registration", new HttpEntity<>(body, headers), Void.class);
+            .postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
@@ -112,7 +112,7 @@ public class ITRegister {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
-        restTemplate.postForEntity("/registration", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
 
         // When
         final ResponseEntity<Void> actual = restTemplate
@@ -135,7 +135,7 @@ public class ITRegister {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
-        restTemplate.postForEntity("/registration", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
         restTemplate.postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
 
         // When
