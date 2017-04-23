@@ -84,7 +84,7 @@
                 <artifactId>sass-maven-plugin</artifactId>
                 <version>2.23</version>
                 <configuration>
-                    <destination>src/main/resources/META-INF/resources/css</destination>
+                    <destination>${project.build.outputDirectory}/META-INF/resources/css</destination>
                 </configuration>
                 <executions>
                     <execution>
