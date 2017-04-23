@@ -1,6 +1,7 @@
 package it.scratch.frontend.examples.services;
 
 import it.scratch.frontend.examples.CookieStoreRequestInterceptor;
+import it.scratch.frontend.examples.ExistingUser;
 import it.scratch.frontend.examples.IntegrationTestConfiguration;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import scratch.frontend.examples.data.UserRepository;
 import scratch.frontend.examples.domain.User;
 
 import java.net.URISyntaxException;
@@ -26,7 +26,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
-import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = IntegrationTestConfiguration.class)
@@ -34,7 +33,7 @@ import static shiver.me.timbers.data.random.RandomStrings.someAlphanumericString
 public class ITUser {
 
     @Autowired
-    private UserRepository userRepository;
+    private ExistingUser existingUser;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -52,11 +51,10 @@ public class ITUser {
 
         final HttpHeaders headers = new HttpHeaders();
         final MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        final String username = someAlphanumericString(8);
-        final String password = someAlphanumericString(13);
+        final String username = existingUser.getUsername();
+        final String password = existingUser.getPassword();
 
         // Given
-        userRepository.save(new User(username, password));
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
