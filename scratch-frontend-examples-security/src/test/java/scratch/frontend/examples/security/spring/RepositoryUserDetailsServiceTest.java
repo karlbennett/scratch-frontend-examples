@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import scratch.frontend.examples.security.data.UserRepository;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.data.UserRepository;
+import scratch.frontend.examples.domain.User;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

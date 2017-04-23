@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import scratch.frontend.examples.data.UserRepository;
+import scratch.frontend.examples.domain.User;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -26,6 +28,9 @@ public class IntegrationTestConfiguration {
     @Autowired
     private CookieStoreRequestInterceptor cookieStoreRequestInterceptor;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Bean
     public CookieStoreRequestInterceptor cookieStoreRequestInterceptor() {
         return new CookieStoreRequestInterceptor(new HashSet<>());
@@ -34,5 +39,6 @@ public class IntegrationTestConfiguration {
     @PostConstruct
     public void setup() {
         restTemplate.getRestTemplate().setInterceptors(singletonList(cookieStoreRequestInterceptor));
+        userRepository.save(new User(existingUser.getUsername(), existingUser.getPassword()));
     }
 }

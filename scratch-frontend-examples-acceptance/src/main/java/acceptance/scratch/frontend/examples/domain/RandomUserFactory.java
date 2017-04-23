@@ -2,8 +2,8 @@ package acceptance.scratch.frontend.examples.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import scratch.frontend.examples.security.data.UserRepository;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.data.UserRepository;
+import scratch.frontend.examples.domain.User;
 
 import static shiver.me.timbers.data.random.RandomStrings.buildSomeString;
 

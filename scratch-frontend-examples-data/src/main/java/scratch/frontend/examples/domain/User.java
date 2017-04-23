@@ -1,4 +1,4 @@
-package scratch.frontend.examples.security.domain;
+package scratch.frontend.examples.domain;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 

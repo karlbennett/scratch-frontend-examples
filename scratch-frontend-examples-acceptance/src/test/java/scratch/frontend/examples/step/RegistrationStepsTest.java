@@ -10,7 +10,7 @@ import acceptance.scratch.frontend.examples.step.UserHolder;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;

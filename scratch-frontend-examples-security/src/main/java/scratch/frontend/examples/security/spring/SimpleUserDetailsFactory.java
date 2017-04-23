@@ -3,7 +3,7 @@ package scratch.frontend.examples.security.spring;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 import java.util.Collection;
 

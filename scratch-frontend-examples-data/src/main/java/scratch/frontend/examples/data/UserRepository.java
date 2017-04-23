@@ -1,7 +1,7 @@
-package scratch.frontend.examples.security.data;
+package scratch.frontend.examples.data;
 
 import org.springframework.data.repository.CrudRepository;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 /**
  * This is a Spring Data JPA repository. It is dynamically implemented at runtime by Spring Data.

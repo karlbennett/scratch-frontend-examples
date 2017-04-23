@@ -4,7 +4,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

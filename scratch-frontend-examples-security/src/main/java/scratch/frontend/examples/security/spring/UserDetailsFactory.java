@@ -1,7 +1,7 @@
 package scratch.frontend.examples.security.spring;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 public interface UserDetailsFactory {
 

@@ -2,7 +2,7 @@ package acceptance.scratch.frontend.examples.step;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.domain.User;
 
 @Component
 @Scope("cucumber-glue")

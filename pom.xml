@@ -129,6 +129,7 @@
     </dependencies>
 
     <modules>
+        <module>scratch-frontend-examples-data</module>
         <module>scratch-frontend-examples-integration</module>
         <module>scratch-frontend-examples-security</module>
         <module>scratch-frontend-examples-services</module>

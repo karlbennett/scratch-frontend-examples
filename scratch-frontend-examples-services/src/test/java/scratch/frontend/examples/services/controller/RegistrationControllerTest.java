@@ -2,8 +2,8 @@ package scratch.frontend.examples.services.controller;
 
 import org.junit.Before;
 import org.junit.Test;
-import scratch.frontend.examples.security.data.UserRepository;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.data.UserRepository;
+import scratch.frontend.examples.domain.User;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

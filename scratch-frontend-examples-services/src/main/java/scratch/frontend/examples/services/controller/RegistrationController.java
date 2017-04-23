@@ -3,8 +3,8 @@ package scratch.frontend.examples.services.controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import scratch.frontend.examples.security.data.UserRepository;
-import scratch.frontend.examples.security.domain.User;
+import scratch.frontend.examples.data.UserRepository;
+import scratch.frontend.examples.domain.User;
 
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;

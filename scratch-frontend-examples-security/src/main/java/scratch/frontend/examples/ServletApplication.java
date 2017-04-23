@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package scratch.frontend.examples.security;
+package scratch.frontend.examples;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +26,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * This is the main class that Spring boot uses to start the stand alone application.
+ * It must be located at the high level package so that all the auto-configuration scanning works correctly.
  */
 @SpringBootApplication
 public class ServletApplication extends SpringBootServletInitializer {
