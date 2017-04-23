@@ -108,7 +108,6 @@
     </build>
 
     <dependencies>
-        <!-- Test dependencies below this point. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
