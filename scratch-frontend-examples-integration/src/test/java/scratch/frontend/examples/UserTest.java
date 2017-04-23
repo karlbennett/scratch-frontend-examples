@@ -1,6 +1,6 @@
-package scratch.frontend.examples.services;
+package scratch.frontend.examples;
 
-import it.scratch.frontend.examples.services.User;
+import it.scratch.frontend.examples.User;
 import org.junit.Before;
 import org.junit.Test;
 

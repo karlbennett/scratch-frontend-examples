@@ -1,5 +1,7 @@
 package it.scratch.frontend.examples.services;
 
+import it.scratch.frontend.examples.ExistingUser;
+import it.scratch.frontend.examples.IntegrationTestConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

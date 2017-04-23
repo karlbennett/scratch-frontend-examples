@@ -1,5 +1,6 @@
 package it.scratch.frontend.examples.services;
 
+import it.scratch.frontend.examples.ExistingUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import scratch.frontend.examples.services.data.UserRepository;

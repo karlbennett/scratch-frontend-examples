@@ -1,4 +1,4 @@
-package it.scratch.frontend.examples.services;
+package it.scratch.frontend.examples;
 
 public class User {
 

@@ -1,5 +1,8 @@
 package it.scratch.frontend.examples.services;
 
+import it.scratch.frontend.examples.CookieStoreRequestInterceptor;
+import it.scratch.frontend.examples.ExistingUser;
+import it.scratch.frontend.examples.IntegrationTestConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package it.scratch.frontend.examples.services;
+package it.scratch.frontend.examples;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
