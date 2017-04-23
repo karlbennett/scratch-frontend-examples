@@ -1,4 +1,4 @@
-scratch-simple-webapp
+scratch-frontend-examples-mustache
 ==============
 
 This project demonstrates a range of features across multiple frameworks and tools including
