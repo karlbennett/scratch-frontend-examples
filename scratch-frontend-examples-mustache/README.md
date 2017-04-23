@@ -88,7 +88,16 @@ the [`application.properties`](src/main/resources/application.properties) file.
 ##### SASS
 
 The [SASS](http://sass-lang.com/) extension language has been used to simplify the CSS. It is compiled during the build
-by the [sass-maven-plugin](http://www.geodienstencentrum.nl/sass-maven-plugin/plugin-info.html).
+by the [sass-maven-plugin](http://www.geodienstencentrum.nl/sass-maven-plugin/plugin-info.html). To have the SASS 
+recompile on changes you can run the following commands.
+
+```bash
+# From this module.
+mvn sass:watch
+
+# From the root of this project
+mvn sass:watch -pl scratch-frontend-examples-mustache
+```
 
 ##### Intellij IDEA HTML/CSS Reloading
 
