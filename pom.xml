@@ -142,6 +142,7 @@
         <module>scratch-frontend-examples-sass</module>
         <module>scratch-frontend-examples-html-js</module>
         <module>scratch-frontend-examples-jsp</module>
+        <module>scratch-frontend-examples-freemarker</module>
         <module>scratch-frontend-examples-mustache</module>
     </modules>
 </project>
