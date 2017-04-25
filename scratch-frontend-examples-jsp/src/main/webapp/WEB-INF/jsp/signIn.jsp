@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {{> common-head}}
-    <link rel="stylesheet" type="text/css" href="../css/form.css">
-
-    <title>Simpe Webapp (Sign In)</title>
-</head>
-<body>
-{{> header}}
-
-<div class="content-container">
-    <h1 class="main-heading">Sign In</h1>
-
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
+<t:scaffold title="Simpe Webapp (Sign In)" heading="Sign In">
     <p>
         Sign into your account.
     </p>
@@ -28,6 +15,4 @@
             <input type="submit" value="Sign In">
         </div>
     </form>
-</div>
-</body>
-</html>
+</t:scaffold>
