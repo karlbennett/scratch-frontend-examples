@@ -23,7 +23,7 @@ public class SeleniumProfilePageTest {
         final String expected = someString();
 
         // Given
-        given(finders.findByClassName("username")).willReturn(username);
+        given(finders.findByClassName("main-heading")).willReturn(username);
         given(username.getText()).willReturn(expected);
 
         // When

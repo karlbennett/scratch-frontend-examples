@@ -11,7 +11,7 @@ describe('Set the profile heading to the username', function () {
 
     // Given
     when(document).createTextNode(username).thenReturn(text);
-    when(document).getElementsByClassName('username-heading').thenReturn([usernameHeading]);
+    when(document).getElementsByClassName('main-heading').thenReturn([usernameHeading]);
 
     // When
     new ProfileHeadingReplacerFactory(document).create()(username);

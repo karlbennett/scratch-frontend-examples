@@ -3,6 +3,7 @@ package acceptance.scratch.frontend.examples.page;
 import acceptance.scratch.frontend.examples.finder.Finders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import shiver.me.timbers.waiting.Wait;
 
 @Component
 public class SeleniumProfilePage implements ProfilePage {
@@ -14,8 +15,9 @@ public class SeleniumProfilePage implements ProfilePage {
         this.finders = finders;
     }
 
+    @Wait(waitFor = StringNotEmpty.class)
     @Override
     public String getUsername() {
-        return finders.findByClassName("username").getText();
+        return finders.findByClassName("main-heading").getText();
     }
 }

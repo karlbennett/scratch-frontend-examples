@@ -2,7 +2,6 @@ package scratch.frontend.examples.step;
 
 import acceptance.scratch.frontend.examples.domain.UserFactory;
 import acceptance.scratch.frontend.examples.page.HomePage;
-import acceptance.scratch.frontend.examples.page.ProfilePage;
 import acceptance.scratch.frontend.examples.page.RegistrationPage;
 import acceptance.scratch.frontend.examples.page.RegistrationSuccessPage;
 import acceptance.scratch.frontend.examples.step.RegistrationSteps;
@@ -27,7 +26,6 @@ public class RegistrationStepsTest {
     private HomePage homePage;
     private RegistrationPage registrationPage;
     private RegistrationSteps steps;
-    private ProfilePage profilePage;
     private RegistrationSuccessPage registrationSuccessPage;
 
     @Before
@@ -37,14 +35,12 @@ public class RegistrationStepsTest {
         homePage = mock(HomePage.class);
         registrationPage = mock(RegistrationPage.class);
         registrationSuccessPage = mock(RegistrationSuccessPage.class);
-        profilePage = mock(ProfilePage.class);
         steps = new RegistrationSteps(
             userFactory,
             userHolder,
             homePage,
             registrationPage,
-            registrationSuccessPage,
-            profilePage
+            registrationSuccessPage
         );
     }
 

@@ -17,4 +17,6 @@ public interface HomePage {
     boolean isCurrentPage();
 
     String getUsername();
+
+    void clickUsername(String username);
 }

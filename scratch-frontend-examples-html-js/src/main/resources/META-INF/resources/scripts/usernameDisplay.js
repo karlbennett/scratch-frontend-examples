@@ -62,7 +62,7 @@ function ProfileHeadingReplacerFactory(document) {
 ProfileHeadingReplacerFactory.prototype.create = function () {
   var document = this.document;
   return function (username) {
-    var usernameHeading = document.getElementsByClassName('username-heading')[0];
+    var usernameHeading = document.getElementsByClassName('main-heading')[0];
     usernameHeading.appendChild(document.createTextNode(username));
   };
 };

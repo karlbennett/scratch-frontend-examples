@@ -14,6 +14,7 @@ import static java.lang.String.format;
 import static shiver.me.timbers.waiting.Decision.YES;
 
 @Component
+@Wait
 public class SeleniumHomePage implements HomePage {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -58,34 +59,34 @@ public class SeleniumHomePage implements HomePage {
         }
     }
 
-    @Wait
     @Override
     public void clickRegister() {
         clickLinkByText("Register");
     }
 
-    @Wait
     @Override
     public void clickSignIn() {
         clickLinkByText("Sign In");
     }
 
-    @Wait
     @Override
     public void clickSignOut() {
         clickLinkByText("Sign Out");
     }
 
-    @Wait
     @Override
     public boolean isCurrentPage() {
         return "Simple Webapp (Home)".equals(driver.getTitle());
     }
 
-    @Wait
     @Override
     public String getUsername() {
         return finders.findByClassName("username").getText();
+    }
+
+    @Override
+    public void clickUsername(String username) {
+        finders.clickByText("a", username);
     }
 
     private void clickLinkByText(String text) {

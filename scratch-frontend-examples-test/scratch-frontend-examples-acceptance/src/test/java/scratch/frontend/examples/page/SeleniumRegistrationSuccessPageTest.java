@@ -28,7 +28,7 @@ public class SeleniumRegistrationSuccessPageTest {
         final String expected = someString();
 
         // Given
-        given(finders.findTextByClassName("registration-success-heading")).willReturn(expected);
+        given(finders.findTextByClassName("main-heading")).willReturn(expected);
 
         // When
         final String actual = page.getWelcome();

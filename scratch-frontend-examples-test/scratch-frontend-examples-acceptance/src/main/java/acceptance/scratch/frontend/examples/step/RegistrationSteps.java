@@ -2,7 +2,6 @@ package acceptance.scratch.frontend.examples.step;
 
 import acceptance.scratch.frontend.examples.domain.UserFactory;
 import acceptance.scratch.frontend.examples.page.HomePage;
-import acceptance.scratch.frontend.examples.page.ProfilePage;
 import acceptance.scratch.frontend.examples.page.RegistrationPage;
 import acceptance.scratch.frontend.examples.page.RegistrationSuccessPage;
 import cucumber.api.java.en.Given;
@@ -20,7 +19,6 @@ public class RegistrationSteps {
     private final HomePage homePage;
     private final RegistrationPage registrationPage;
     private final RegistrationSuccessPage registrationSuccessPage;
-    private final ProfilePage profilePage;
 
     @Autowired
     public RegistrationSteps(
@@ -28,15 +26,13 @@ public class RegistrationSteps {
         UserHolder userHolder,
         HomePage homePage,
         RegistrationPage registrationPage,
-        RegistrationSuccessPage registrationSuccessPage,
-        ProfilePage profilePage
+        RegistrationSuccessPage registrationSuccessPage
     ) {
         this.userFactory = userFactory;
         this.userHolder = userHolder;
         this.homePage = homePage;
         this.registrationPage = registrationPage;
         this.registrationSuccessPage = registrationSuccessPage;
-        this.profilePage = profilePage;
     }
 
     @Given("^I am a new user$")
@@ -53,7 +49,13 @@ public class RegistrationSteps {
 
     @Then("^the registration should have succeeded$")
     public void the_registration_should_have_succeeded() {
-        assertThat(registrationSuccessPage.getWelcome(), equalTo("Welcome"));
-        assertThat(registrationSuccessPage.getMessage(), equalTo("Your account has been setup. You can now Sign In."));
+        assertThat("The welcome message should be visible.",
+            registrationSuccessPage.getWelcome(),
+            equalTo("Welcome")
+        );
+        assertThat("The registration confirmation message should be visible.",
+            registrationSuccessPage.getMessage(),
+            equalTo("Your account has been setup. You can now Sign In.")
+        );
     }
 }

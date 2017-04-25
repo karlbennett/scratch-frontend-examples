@@ -40,8 +40,7 @@ public class RandomUserFactoryTest {
     @Test
     public void Can_create_a_random_existing_user() {
 
-        final scratch.frontend.examples.domain.User user =
-            mock(scratch.frontend.examples.domain.User.class);
+        final scratch.frontend.examples.domain.User user = mock(scratch.frontend.examples.domain.User.class);
 
         final String username = someString();
         final String password = someString();

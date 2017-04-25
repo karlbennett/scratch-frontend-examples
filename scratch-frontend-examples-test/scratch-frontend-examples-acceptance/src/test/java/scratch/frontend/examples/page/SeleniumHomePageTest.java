@@ -153,7 +153,7 @@ public class SeleniumHomePageTest {
     }
 
     @Test
-    public void Can_get_the_account_name() {
+    public void Can_get_the_user_name() {
 
         final WebElement signIn = mock(WebElement.class);
 
@@ -168,5 +168,18 @@ public class SeleniumHomePageTest {
 
         // Then
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void Can_click_the_user_name() {
+
+        // Given
+        final String username = someString();
+
+        // When
+        page.clickUsername(username);
+
+        // Then
+        verify(finders).clickByText("a", username);
     }
 }
