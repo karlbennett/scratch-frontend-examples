@@ -1,2 +1,2 @@
-scratch-frontend-examples-jsp
-=============================
+scratch-frontend-examples-freemarker
+====================================
