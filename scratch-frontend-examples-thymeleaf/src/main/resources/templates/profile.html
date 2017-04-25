@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" th:with="mainHeading=${username}"
+>
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-
     <title th:text="'Simpe Webapp (' + ${username} + ')'">Simpe Webapp (Profile)</title>
 </head>
 <body>
-<div th:replace="header"></div>
-
-<div class="content-container">
-    <h1 th:text="${username}" class="main-heading">Profile</h1>
-
-    <p>
-        This is your profile page. Here you can edit your account settings.
-    </p>
-</div>
+<p layout:fragment="content">
+    This is your profile page. Here you can edit your account settings.
+</p>
 </body>
 </html>

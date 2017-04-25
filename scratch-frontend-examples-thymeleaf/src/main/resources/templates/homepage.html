@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" th:with="mainHeading='Simple Webapp'"
+>
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-
     <title>Simple Webapp (Home)</title>
 </head>
 <body>
-<div th:replace="header"></div>
-
-<div class="content-container">
-    <h1 class="main-heading">Simple Webapp</h1>
-
-    <p>
-        Welcome to this Simple Webapp.
-    </p>
-</div>
+<p layout:fragment="content">
+    Welcome to this Simple Webapp.
+</p>
 </body>
 </html>

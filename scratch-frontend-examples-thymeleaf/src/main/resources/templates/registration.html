@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" th:with="mainHeading='Registration'"
+>
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="../css/form.css" />
-
-    <title>Simpe Webapp (Registration)</title>
+    <title>Simple Webapp (Registration)</title>
 </head>
 <body>
-<div th:replace="header"></div>
-
-<div class="content-container">
-    <h1 class="main-heading">Registration</h1>
-
+<div layout:fragment="content">
     <p>
         Register a new account with your choice of username and password.
     </p>
