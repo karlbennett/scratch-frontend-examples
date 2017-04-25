@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
 
 @Configuration
-public class MustacheSecurityConfiguration {
+public class MvcSecurityConfiguration {
 
     @Bean
     public CustomAuthorizeRequests mustacheCustomAuthorizeRequests() {
