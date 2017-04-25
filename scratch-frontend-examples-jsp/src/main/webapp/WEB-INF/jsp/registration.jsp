@@ -1,5 +1,5 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
-<t:scaffold title="Simple Webapp (Registration)" heading="Registration">
+<t:layout title="Simple Webapp (Registration)" heading="Registration">
     <p>
         Register a new account with your choice of username and password.
     </p>
@@ -15,4 +15,4 @@
             <input type="submit" value="Register">
         </div>
     </form>
-</t:scaffold>
+</t:layout>

@@ -1,5 +1,5 @@
-<#import "scaffold.ftl" as m>
-<@m.scaffold title="Simpe Webapp (Sign In)" heading="Sign In">
+<#import "layout.ftl" as m>
+<@m.layout title="Simpe Webapp (Sign In)" heading="Sign In">
 <p>
     Sign into your account.
 </p>
@@ -15,4 +15,4 @@
         <input type="submit" value="Sign In">
     </div>
 </form>
-</@m.scaffold>
+</@m.layout>

@@ -1,5 +1,5 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
-<t:scaffold title="Simpe Webapp (Sign In)" heading="Sign In">
+<t:layout title="Simpe Webapp (Sign In)" heading="Sign In">
     <p>
         Sign into your account.
     </p>
@@ -15,4 +15,4 @@
             <input type="submit" value="Sign In">
         </div>
     </form>
-</t:scaffold>
+</t:layout>

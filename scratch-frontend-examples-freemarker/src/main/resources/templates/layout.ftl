@@ -1,4 +1,4 @@
-<#macro scaffold title heading>
+<#macro layout title heading>
 <!DOCTYPE html>
 <html lang="en">
 <head>

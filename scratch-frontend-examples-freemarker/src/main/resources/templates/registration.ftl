@@ -1,5 +1,5 @@
-<#import "scaffold.ftl" as m>
-<@m.scaffold title="Simple Webapp (Registration)" heading="Registration">
+<#import "layout.ftl" as m>
+<@m.layout title="Simple Webapp (Registration)" heading="Registration">
 <p>
     Register a new account with your choice of username and password.
 </p>
@@ -15,4 +15,4 @@
         <input type="submit" value="Register">
     </div>
 </form>
-</@m.scaffold>
+</@m.layout>
