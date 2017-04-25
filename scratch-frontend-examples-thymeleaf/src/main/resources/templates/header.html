@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragmet="header" class="header-container">
+    <div class="signin">
+        <div th:if="${username != null}">
+            <a th:text="${username}" href="/profile">Username</a>
+            <a href="/signOut">Sign Out</a>
+        </div>
+        <div th:if="${username == null}">
+            <a href="/registration">Register</a>
+            <a href="/signIn">Sign In</a>
+        </div>
+    </div>
+    <div class="menu">
+        <a href="/">Home</a>
+    </div>
+</div>
+</body>
+</html>

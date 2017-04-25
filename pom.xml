@@ -144,5 +144,6 @@
         <module>scratch-frontend-examples-jsp</module>
         <module>scratch-frontend-examples-freemarker</module>
         <module>scratch-frontend-examples-mustache</module>
+        <module>scratch-frontend-examples-thymeleaf</module>
     </modules>
 </project>
