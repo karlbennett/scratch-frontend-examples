@@ -44,26 +44,34 @@ UsernameReplacerFactory.prototype.create = function (usernameElement) {
   };
 };
 
-function TitleReplacerFactory(document) {
+function TitleReplacerFactory(window, document) {
+  this.window = window;
   this.document = document;
 }
 
 TitleReplacerFactory.prototype.create = function () {
+  var window = this.window;
   var document = this.document;
   return function (username) {
-    document.title = 'Simpe Webapp (' + username + ')'
+    if (window.location.pathname.endsWith('/profile')) {
+      document.title = 'Simpe Webapp (' + username + ')'
+    }
   };
 };
 
-function ProfileHeadingReplacerFactory(document) {
+function ProfileHeadingReplacerFactory(window, document) {
+  this.window = window;
   this.document = document;
 }
 
 ProfileHeadingReplacerFactory.prototype.create = function () {
+  var window = this.window;
   var document = this.document;
   return function (username) {
-    var usernameHeading = document.getElementsByClassName('main-heading')[0];
-    usernameHeading.appendChild(document.createTextNode(username));
+    if (window.location.pathname.endsWith('/profile')) {
+      var usernameHeading = document.getElementsByClassName('main-heading')[0];
+      usernameHeading.appendChild(document.createTextNode(username));
+    }
   };
 };
 

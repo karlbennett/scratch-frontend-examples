@@ -32,10 +32,49 @@
 
     <properties>
         <start-class>scratch.frontend.examples.ServletApplication</start-class>
+        <skipMinify>false</skipMinify>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>js-dev</id>
+            <properties>
+                <skipMinify>true</skipMinify>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.samaxes.maven</groupId>
+                <artifactId>minify-maven-plugin</artifactId>
+                <version>1.7.6</version>
+                <configuration>
+                    <skipMinify>${skipMinify}</skipMinify>
+                    <charset>UTF-8</charset>
+                    <webappSourceDir>${project.basedir}/src/main</webappSourceDir>
+                    <jsSourceDir>javascript</jsSourceDir>
+                    <jsFiles>
+                        <jsFile>usernameDisplay.js</jsFile>
+                        <jsFile>header-page.js</jsFile>
+                        <jsFile>profile-page.js</jsFile>
+                    </jsFiles>
+                    <webappTargetDir>${project.build.outputDirectory}</webappTargetDir>
+                    <jsTargetDir>/META-INF/resources/scripts</jsTargetDir>
+                    <jsFinalFile>all.js</jsFinalFile>
+                    <jsEngine>CLOSURE</jsEngine>
+                    <nosuffix>true</nosuffix>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-minify</id>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <!-- This will run the JavaScript unit tests during the build. -->
                 <groupId>com.github.searls</groupId>
@@ -49,7 +88,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jsSrcDir>${project.basedir}/src/main/resources/META-INF/resources/scripts</jsSrcDir>
+                    <jsSrcDir>${project.basedir}/src/main/javascript</jsSrcDir>
                     <sourceExcludes>
                         <exclude>**/*-page.js</exclude>
                     </sourceExcludes>
