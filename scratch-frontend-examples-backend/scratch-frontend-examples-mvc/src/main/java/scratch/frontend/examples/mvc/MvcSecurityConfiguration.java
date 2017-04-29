@@ -1,9 +1,11 @@
-package scratch.frontend.examples.htmlJs;
+package scratch.frontend.examples.mvc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -11,10 +13,10 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
 
 @Configuration
-public class HtmlJsSecurityConfiguration {
+public class MvcSecurityConfiguration {
 
     @Bean
-    public CustomAuthorizeRequests htmlJsCustomAuthorizeRequests() {
+    public CustomAuthorizeRequests mvcCustomAuthorizeRequests() {
         return (authorizeRequests) -> authorizeRequests
             .antMatchers(
                 "/",
@@ -22,23 +24,28 @@ public class HtmlJsSecurityConfiguration {
                 "/scripts/*",
                 "/css/*",
                 "/registration",
-                "/registration-success"
+                "/registration/success"
             ).permitAll()
             .anyRequest().authenticated();
     }
 
     @Bean
-    public AuthenticationSuccessHandler loginDelegate() {
+    public AuthenticationSuccessHandler mvnLoginDelegate() {
         return new SimpleUrlAuthenticationSuccessHandler("/");
     }
 
     @Bean
-    public LogoutSuccessHandler logoutDelegate() {
+    public LogoutSuccessHandler mvnLogoutDelegate() {
         return new SimpleUrlLogoutSuccessHandler();
     }
 
     @Bean
-    public AuthenticationFailureHandler htmlJsAuthenticationFailureHandler() {
+    public AuthenticationFailureHandler mvcAuthenticationFailureHandler() {
         return new SimpleUrlAuthenticationFailureHandler("/");
+    }
+
+    @Bean
+    public AuthenticationEntryPoint mvcAuthenticationEntryPoint() {
+        return new LoginUrlAuthenticationEntryPoint("/signIn");
     }
 }

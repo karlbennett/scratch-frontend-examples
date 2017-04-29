@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mustache;
+package scratch.frontend.examples.htmljs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

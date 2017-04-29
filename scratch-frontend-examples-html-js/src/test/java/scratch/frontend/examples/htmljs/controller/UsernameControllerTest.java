@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mustache.controller;
+package scratch.frontend.examples.htmljs.controller;
 
 import org.junit.Test;
 
