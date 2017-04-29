@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mustache;
+package scratch.frontend.examples.polymer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,39 +13,44 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
 
 @Configuration
-public class MvcSecurityConfiguration {
+public class PolymerSecurityConfiguration {
 
     @Bean
-    public CustomAuthorizeRequests mvcCustomAuthorizeRequests() {
+    public CustomAuthorizeRequests polymerCustomAuthorizeRequests() {
         return (authorizeRequests) -> authorizeRequests
             .antMatchers(
                 "/",
                 "/favicon.ico",
-                "/scripts/*",
                 "/css/*",
-                "/registration",
-                "/registration/success"
+                "/sign-in.html",
+                "/registration.html",
+                "/register",
+                "/registration-success.html",
+                "/webjars/**/*",
+                "/components/**/*",
+                "/page-layout",
+                "/page-header"
             ).permitAll()
             .anyRequest().authenticated();
     }
 
     @Bean
-    public AuthenticationSuccessHandler mvnLoginDelegate() {
+    public AuthenticationSuccessHandler polymerLoginDelegate() {
         return new SimpleUrlAuthenticationSuccessHandler("/");
     }
 
     @Bean
-    public LogoutSuccessHandler mvnLogoutDelegate() {
+    public LogoutSuccessHandler polymerLogoutDelegate() {
         return new SimpleUrlLogoutSuccessHandler();
     }
 
     @Bean
-    public AuthenticationFailureHandler mvcAuthenticationFailureHandler() {
+    public AuthenticationFailureHandler polymerAuthenticationFailureHandler() {
         return new SimpleUrlAuthenticationFailureHandler("/");
     }
 
     @Bean
-    public AuthenticationEntryPoint mvcAuthenticationEntryPoint() {
-        return new LoginUrlAuthenticationEntryPoint("/signIn");
+    public AuthenticationEntryPoint polymerAuthenticationEntryPoint() {
+        return new LoginUrlAuthenticationEntryPoint("/sign-in.html");
     }
 }

@@ -1,0 +1,25 @@
+<link rel="import" href="/webjars/polymer/1.8.0/polymer.html">
+<link rel="import" href="/components/dynamic/page-header">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/form.css">
+
+<dom-module id="page-layout">
+    <template>
+        <page-header></page-header>
+
+        <div class="content-container">
+            <h1 class="main-heading">[[heading]]</h1>
+
+            <slot></slot>
+        </div>
+    </template>
+
+    <script>
+      Polymer({
+        is: "page-layout",
+        properties: {
+          heading: String
+        }
+      });
+    </script>
+</dom-module>

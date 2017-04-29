@@ -145,5 +145,6 @@
         <module>scratch-frontend-examples-freemarker</module>
         <module>scratch-frontend-examples-mustache</module>
         <module>scratch-frontend-examples-thymeleaf</module>
+        <module>scratch-frontend-examples-polymer</module>
     </modules>
 </project>

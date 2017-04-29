@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/webjars/webcomponentsjs/0.7.24/webcomponents-lite.min.js"></script>
+    <link rel="import" href="/components/static/page-layout.html">
+
+    <title>Simple Webapp (Registration)</title>
+</head>
+<body>
+<page-layout heading="Registration">
+    <p>
+        Register a new account with your choice of username and password.
+    </p>
+
+    <form class="form" action="/register" method="post">
+        <div class="input">
+            <label for="username">Username</label><input id="username" name="username" type="text">
+        </div>
+        <div class="input">
+            <label for="password">Password</label><input id="password" name="password" type="password">
+        </div>
+        <div class="input">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</page-layout>
+</body>
+</html>
