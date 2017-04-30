@@ -11,8 +11,8 @@ import static java.util.Collections.singletonMap;
 import static org.springframework.web.servlet.HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE;
 
 @Controller
-@RequestMapping("/components/dynamic/page-header")
-public class PageHeaderController {
+@RequestMapping("/components/dynamic/page-menu")
+public class PageMenuController {
 
     @RequestMapping
     public ModelAndView pageHeader(Principal principal, HttpServletRequest request) {

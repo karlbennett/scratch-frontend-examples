@@ -15,13 +15,13 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.web.servlet.HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE;
 import static shiver.me.timbers.data.random.RandomStrings.someString;
 
-public class PageHeaderControllerTest {
+public class PageMenuControllerTest {
 
-    private PageHeaderController controller;
+    private PageMenuController controller;
 
     @Before
     public void setUp() {
-        controller = new PageHeaderController();
+        controller = new PageMenuController();
     }
 
     @Test
