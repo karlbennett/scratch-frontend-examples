@@ -4,19 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 import static java.util.Collections.singletonMap;
-import static org.springframework.web.servlet.HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping("/components/dynamic/page-menu")
-public class PageMenuController {
+@RequestMapping(path = "/components/dynamic", method = GET)
+public class DynamicComponentController {
 
-    @RequestMapping
-    public ModelAndView pageHeader(Principal principal, HttpServletRequest request) {
-        final String path = request.getAttribute(PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
+    static final String DYNAMIC_COMPONENT_PATH = "components/dynamic/";
+
+    @RequestMapping("/page-menu")
+    public ModelAndView pageHeader(Principal principal) {
+        final String path = DYNAMIC_COMPONENT_PATH + "page-menu";
         if (principal == null) {
             return new ModelAndView(path);
         }

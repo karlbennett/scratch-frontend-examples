@@ -39,7 +39,7 @@ public class JwtAuthenticationFactory implements AuthenticationFactory {
                 null
             );
         } catch (JwtException e) {
-            log.warn("JWT token is invalid.", e);
+            log.debug("JWT token is invalid.", e);
             return null;
         }
     }
