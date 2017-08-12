@@ -1,0 +1,180 @@
+<!--
+  ~ Copyright 2015 Karl Bennett
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>scratch</groupId>
+        <artifactId>scratch-frontend-examples</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>scratch-frontend-examples-vue</artifactId>
+
+    <packaging>war</packaging>
+
+    <name>${project.artifactId}</name>
+
+    <properties>
+        <start-class>scratch.frontend.examples.ServletApplication</start-class>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <webpack.profile>dev</webpack.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <webpack.profile>prod</webpack.profile>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Install Node, run NPM, and then build the view layer with Webpack. -->
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.5</version>
+                <configuration>
+                    <installDirectory>target</installDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v6.11.2</nodeVersion>
+                            <npmVersion>3.10.10</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>webpack build</id>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>--env.profiles=${webpack.profile}</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>karma tests</id>
+                        <goals>
+                            <goal>karma</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <!-- Run this execution to watch then compile modified JavaScript files into the Spring MVC -->
+                        <!-- static assets directory e.g. mvn frontend:webpack@watch -->
+                        <id>watch</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                --output-path ${project.build.outputDirectory}/javascript --progress --colors
+                                --watch --env.profiles=${webpack.profile}
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>karma-auto-watch</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run karma-auto-watch</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>webpack-dev-server</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run webpack-dev-server</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Enable the Spring Boot plugin so that the artifact that is built is an executable WAR. -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!-- Tell maven to scan the scratch-frontend-examples-acceptance dependency for integration tests. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <dependenciesToScan>
+                        <dependency>scratch:scratch-frontend-examples-acceptance</dependency>
+                    </dependenciesToScan>
+                    <argLine>-Dweb.driver=chrome-headless</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>scratch</groupId>
+            <artifactId>scratch-frontend-examples-sass</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>scratch</groupId>
+            <artifactId>scratch-frontend-examples-services</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mustache</artifactId>
+        </dependency>
+
+        <!-- Test dependencies below this point. -->
+        <dependency>
+            <groupId>scratch</groupId>
+            <artifactId>scratch-frontend-examples-acceptance</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

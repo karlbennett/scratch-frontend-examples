@@ -146,5 +146,6 @@
         <module>scratch-frontend-examples-mustache</module>
         <module>scratch-frontend-examples-thymeleaf</module>
         <module>scratch-frontend-examples-polymer</module>
+        <module>scratch-frontend-examples-vue</module>
     </modules>
 </project>

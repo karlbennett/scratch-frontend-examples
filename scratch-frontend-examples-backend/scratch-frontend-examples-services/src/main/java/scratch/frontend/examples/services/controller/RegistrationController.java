@@ -11,7 +11,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/api/register")
 public class RegistrationController {
 
     private final UserRepository userRepository;

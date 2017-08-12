@@ -2,6 +2,7 @@ package acceptance.scratch.frontend.examples;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -28,6 +29,12 @@ public class SeleniumConfiguration {
 
         if ("chrome".equals(webDriver)) {
             return new ChromeDriver();
+        }
+
+        if ("chrome-headless".equals(webDriver)) {
+            final ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+            return new ChromeDriver(options);
         }
 
         if ("firefox".equals(webDriver)) {

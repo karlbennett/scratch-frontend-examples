@@ -49,7 +49,7 @@
                     <dependenciesToScan>
                         <dependency>scratch:scratch-frontend-examples-acceptance</dependency>
                     </dependenciesToScan>
-                    <argLine>-Dweb.driver=chrome</argLine>
+                    <argLine>-Dweb.driver=chrome-headless</argLine>
                 </configuration>
             </plugin>
         </plugins>

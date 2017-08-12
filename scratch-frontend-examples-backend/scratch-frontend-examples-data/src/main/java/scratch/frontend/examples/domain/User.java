@@ -1,5 +1,7 @@
 package scratch.frontend.examples.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ public class User extends AbstractPersistable<Long> {
 
     @Column(unique = true, nullable = false)
     private String username;
+
     @Column(nullable = false)
     private String password;
 
@@ -30,10 +33,12 @@ public class User extends AbstractPersistable<Long> {
         this.username = username;
     }
 
+    @JsonIgnore // We must never allow the password to be exposed outside the application.
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }

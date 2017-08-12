@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
@@ -65,7 +66,7 @@ public class ITRegister {
 
         // When
         final ResponseEntity<Void> actual = restTemplate
-            .postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
+            .postForEntity("/api/register", new HttpEntity<>(body, headers), Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
@@ -90,7 +91,7 @@ public class ITRegister {
 
         // When
         final ResponseEntity<Void> actual = restTemplate
-            .postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
+            .postForEntity("/api/register", new HttpEntity<>(body, headers), Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
@@ -112,11 +113,11 @@ public class ITRegister {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
-        restTemplate.postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/api/register", new HttpEntity<>(body, headers), Void.class);
 
         // When
         final ResponseEntity<Void> actual = restTemplate
-            .postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
+            .postForEntity("/api/signIn", new HttpEntity<>(body, headers), Void.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
@@ -135,16 +136,16 @@ public class ITRegister {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
-        restTemplate.postForEntity("/register", new HttpEntity<>(body, headers), Void.class);
-        restTemplate.postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/api/register", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/api/signIn", new HttpEntity<>(body, headers), Void.class);
 
         // When
-        final ResponseEntity<User> actual = restTemplate.getForEntity("/user", User.class);
+        final ResponseEntity<User> actual = restTemplate.getForEntity("/api/user", User.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
         final User user = actual.getBody();
         assertThat(user.getUsername(), equalTo(username));
-        assertThat(user.getPassword(), equalTo(password));
+        assertThat(user.getPassword(), nullValue());
     }
 }

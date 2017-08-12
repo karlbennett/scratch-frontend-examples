@@ -74,9 +74,10 @@ public class SeleniumHomePage implements HomePage {
         clickLinkByText("Sign Out");
     }
 
+    @Wait(waitForTrue = YES)
     @Override
     public boolean isCurrentPage() {
-        return "Simple Webapp (Home)".equals(driver.getTitle());
+        return "Simple Webapp".equals(finders.findTextByClassName("main-heading"));
     }
 
     @Override

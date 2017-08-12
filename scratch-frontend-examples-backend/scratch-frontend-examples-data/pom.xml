@@ -40,5 +40,12 @@
             <artifactId>h2</artifactId>
             <version>1.4.194</version>
         </dependency>
+        <dependency>
+            <!-- We only need access to the annotations for the domain objects and only when Jackson is being used. -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

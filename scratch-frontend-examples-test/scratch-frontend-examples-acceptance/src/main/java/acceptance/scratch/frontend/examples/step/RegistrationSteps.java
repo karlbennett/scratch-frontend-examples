@@ -8,6 +8,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+import shiver.me.timbers.waiting.Wait;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -47,6 +48,7 @@ public class RegistrationSteps {
         registrationPage.register(userHolder.get());
     }
 
+    @Wait
     @Then("^the registration should have succeeded$")
     public void the_registration_should_have_succeeded() {
         assertThat("The welcome message should be visible.",

@@ -2,6 +2,7 @@ package scratch.frontend.examples.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import scratch.frontend.examples.security.json.JacksonStreamingJsonParser;
 import scratch.frontend.examples.security.jwt.JwtEncoder;
 import scratch.frontend.examples.security.spring.AuthenticationFactory;
 import scratch.frontend.examples.security.spring.CustomAuthorizeRequests;
+import scratch.frontend.examples.security.spring.CustomHttpSecurity;
 import scratch.frontend.examples.security.spring.Http200AuthenticationSuccessHandler;
 import scratch.frontend.examples.security.spring.Http200LogoutSuccessHandler;
 import scratch.frontend.examples.security.spring.Http401AuthenticationEntryPoint;
@@ -35,6 +37,15 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Value("${login.page:/signIn}")
+    private String loginPage;
+
+    @Value("${logout.page:/signOut}")
+    private String logoutPage;
+
+    @Autowired
+    private CustomHttpSecurity customHttpSecurity;
 
     @Autowired
     private CustomAuthorizeRequests customAuthorizeRequests;
@@ -65,7 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected final void configure(HttpSecurity http) throws Exception {
-        final String loginPage = "/signIn";
+        customHttpSecurity.customise(http);
         // The CSRF prevention is disabled because it greatly complicates the requirements for the sign in POST request.
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
@@ -84,13 +95,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .loginPage(loginPage).permitAll();
         http.logout()
             .logoutSuccessHandler(new JwtLogoutSuccessHandler(logoutDelegate))
-            .logoutUrl("/signOut");
+            .logoutUrl(logoutPage);
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
     }
 
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
@@ -98,6 +108,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      * The @ConditionalOnMissingBean annotation used bellow allows the configured classes to be overridden by projects
      * that use this library. They can do this by simply adding their own implementation to the Spring context.
      */
+
+    @Bean
+    @ConditionalOnMissingBean(CustomHttpSecurity.class)
+    public CustomHttpSecurity customHttpSecurity() {
+        return (http) -> {};
+    }
 
     @Bean
     @ConditionalOnMissingBean(CustomAuthorizeRequests.class)

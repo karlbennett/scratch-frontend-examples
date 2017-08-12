@@ -130,7 +130,7 @@ public class SeleniumHomePageTest {
     public void Can_check_that_the_home_page_is_the_current_page() {
 
         // Given
-        given(driver.getTitle()).willReturn("Simple Webapp (Home)");
+        given(finders.findTextByClassName("main-heading")).willReturn("Simple Webapp");
 
         // When
         final boolean actual = page.isCurrentPage();
@@ -143,7 +143,7 @@ public class SeleniumHomePageTest {
     public void Can_check_that_the_home_page_is_not_the_current_page() {
 
         // Given
-        given(driver.getTitle()).willReturn(someString());
+        given(finders.findTextByClassName("main-heading")).willReturn(someString());
 
         // When
         final boolean actual = page.isCurrentPage();

@@ -21,6 +21,7 @@ import scratch.frontend.examples.domain.User;
 import java.net.URISyntaxException;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
@@ -58,23 +59,23 @@ public class ITUser {
         headers.setContentType(APPLICATION_FORM_URLENCODED);
         body.add("username", username);
         body.add("password", password);
-        restTemplate.postForEntity("/signIn", new HttpEntity<>(body, headers), Void.class);
+        restTemplate.postForEntity("/api/signIn", new HttpEntity<>(body, headers), Void.class);
 
         // When
-        final ResponseEntity<User> actual = restTemplate.getForEntity("/user", User.class);
+        final ResponseEntity<User> actual = restTemplate.getForEntity("/api/user", User.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(OK));
         final User user = actual.getBody();
         assertThat(user.getUsername(), equalTo(username));
-        assertThat(user.getPassword(), equalTo(password));
+        assertThat(user.getPassword(), nullValue());
     }
 
     @Test
     public void Cannot_retrieve_a_user_when_not_logged_in() throws URISyntaxException {
 
         // When
-        final ResponseEntity<User> actual = restTemplate.getForEntity("/user", User.class);
+        final ResponseEntity<User> actual = restTemplate.getForEntity("/api/user", User.class);
 
         // Then
         assertThat(actual.getStatusCode(), equalTo(UNAUTHORIZED));

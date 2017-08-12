@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb/base",
+  "env": {
+    "jasmine": true,
+    "browser": true
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "max-len": [
+      "error",
+      120
+    ],
+    "comma-dangle": "off",
+    "no-param-reassign": "off"
+  }
+}
