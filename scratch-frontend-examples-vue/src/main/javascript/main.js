@@ -23,7 +23,7 @@ const store = new Vuex.Store({
   actions
 });
 
-// eslint-disable-next-line no-new,no-unused-vars
+// eslint-disable-next-line no-new
 const app = new Vue({
   el: '#vue-app',
   store,
@@ -35,14 +35,14 @@ const app = new Vue({
   }
 });
 
-/* eslint-disable no-return-assign,global-require */
+/* eslint-disable no-return-assign */
 page('/', () => app.ViewComponent = Home);
 page('/signIn', () => app.ViewComponent = SignIn);
 page('/registration', () => app.ViewComponent = Registration);
 page('/registrationSuccess', () => app.ViewComponent = RegistrationSuccess);
 page('/profile', () => app.ViewComponent = Profile);
 page('*', () => app.ViewComponent = NotFound);
-/* eslint-enable no-return-assign,global-require */
+/* eslint-enable no-return-assign */
 page();
 
 store.dispatch('requestUser');
