@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import page from 'page';
-import { requestUsername } from './services/UserService';
+import mutations from './store/mutations';
+import actions from './store/actions';
 import Home from './pages/Home.vue';
 import SignIn from './pages/SignIn.vue';
 import Registration from './pages/Registration.vue';
@@ -18,25 +19,8 @@ const store = new Vuex.Store({
     username: '',
     loaded: false
   },
-  mutations: {
-    callback(state, action) {
-      action(state);
-    }
-  },
-  actions: {
-    requestUser(context) {
-      requestUsername(
-        username => context.commit('callback', (state) => {
-          state.username = username;
-          state.loaded = true;
-        }),
-        () => context.commit('callback', (state) => {
-          state.username = '';
-          state.loaded = true;
-        })
-      );
-    }
-  }
+  mutations,
+  actions
 });
 
 // eslint-disable-next-line no-new,no-unused-vars
