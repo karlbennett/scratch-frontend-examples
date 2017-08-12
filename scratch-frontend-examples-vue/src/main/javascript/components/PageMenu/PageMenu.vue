@@ -33,5 +33,3 @@
     }
   }
 </script>
-
-<style></style>

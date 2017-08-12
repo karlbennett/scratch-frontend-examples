@@ -14,5 +14,3 @@
     components: { PageLayout }
   }
 </script>
-
-<style></style>

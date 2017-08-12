@@ -24,5 +24,3 @@
     components: { PageMenu }
   }
 </script>
-
-<style></style>
