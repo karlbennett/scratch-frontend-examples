@@ -3,7 +3,7 @@
         <div class="signin" v-if="loaded">
             <template v-if="username">
                 <a href="/profile">{{username}}</a>
-                <a href="/signOut" v-on:click="signOut">Sign Out</a>
+                <a href="/" v-on:click="signOut">Sign Out</a>
             </template>
             <template v-else>
                 <a href="/registration">Register</a>
@@ -27,16 +27,8 @@
       'loaded'
     ]),
     methods: {
-      signOut(event) {
-        event.preventDefault();
-        signOutUser(
-          () => {
-            this.$store.dispatch('requestUser');
-            page('/');
-          },
-          () => {
-          }
-        )
+      signOut() {
+        signOutUser(() => this.$store.dispatch('requestUser'), () => {});
       }
     }
   }
