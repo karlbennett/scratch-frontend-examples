@@ -7,12 +7,10 @@
 </template>
 
 <script>
-  import PageHeading from '../components/PageHeading.vue';
   import { mapState } from 'vuex'
 
   export default {
     name: 'profile',
-    components: { PageHeading },
     computed: mapState([
       'username'
     ])

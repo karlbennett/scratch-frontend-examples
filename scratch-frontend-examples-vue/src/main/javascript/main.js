@@ -5,6 +5,7 @@ import mutations from './store/mutations';
 import actions from './store/actions';
 
 import PageMenu from './components/PageMenu.vue';
+import PageHeading from './components/PageHeading.vue';
 import Home from './pages/Home.vue';
 import SignIn from './pages/SignIn.vue';
 import Registration from './pages/Registration.vue';
@@ -16,6 +17,9 @@ import './main.scss';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
+
+// We register this component globally so that it can be used within all the page components.
+Vue.component('page-heading', PageHeading);
 
 const store = new Vuex.Store({
   state: {

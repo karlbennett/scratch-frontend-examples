@@ -7,10 +7,7 @@
 </template>
 
 <script>
-  import PageHeading from '../components/PageHeading.vue';
-
   export default {
-    name: 'home',
-    components: { PageHeading }
+    name: 'home'
   }
 </script>

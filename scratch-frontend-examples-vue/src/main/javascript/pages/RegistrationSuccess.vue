@@ -7,10 +7,7 @@
 </template>
 
 <script>
-  import PageHeading from '../components/PageHeading.vue';
-
   export default {
-    name: 'registration-success',
-    components: { PageHeading }
+    name: 'registration-success'
   }
 </script>

@@ -21,12 +21,10 @@
 </template>
 
 <script>
-  import PageHeading from '../components/PageHeading.vue';
   import { registerUser } from '../services/UserService';
 
   export default {
     name: 'registration',
-    components: { PageHeading },
     data: () => ({
       username: '',
       password: ''
