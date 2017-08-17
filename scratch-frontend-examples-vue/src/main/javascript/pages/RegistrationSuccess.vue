@@ -1,16 +1,16 @@
 <template>
-    <page-layout heading="Welcome">
-        <p class="registration-success-message">
-            Your account has been setup. You can now <a href="/signIn">Sign In</a>.
-        </p>
-    </page-layout>
+    <p class="registration-success-message">
+        <page-heading>Welcome</page-heading>
+
+        Your account has been setup. You can now <router-link to="/signIn">Sign In</router-link>.
+    </p>
 </template>
 
 <script>
-  import PageLayout from '../layouts/PageLayout/PageLayout.vue'
+  import PageHeading from '../components/PageHeading.vue';
 
   export default {
     name: 'registration-success',
-    components: { PageLayout }
+    components: { PageHeading }
   }
 </script>

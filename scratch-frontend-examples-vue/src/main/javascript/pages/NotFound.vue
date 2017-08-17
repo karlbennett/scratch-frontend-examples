@@ -1,16 +1,16 @@
 <template>
-    <page-layout heading="Page Not Found">
-        <p>
-            The page was not found.
-        </p>
-    </page-layout>
+    <p>
+        <page-heading>Page Not Found</page-heading>
+
+        The page was not found.
+    </p>
 </template>
 
 <script>
-  import PageLayout from '../layouts/PageLayout/PageLayout.vue'
+  import PageHeading from '../components/PageHeading.vue';
 
   export default {
     name: 'NotFound',
-    components: { PageLayout }
+    components: { PageHeading }
   }
 </script>

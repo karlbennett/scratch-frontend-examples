@@ -2,22 +2,22 @@
     <div class="header-container">
         <div class="signin" v-if="loaded">
             <template v-if="username">
-                <a href="/profile">{{username}}</a>
-                <a href="/" v-on:click="signOut">Sign Out</a>
+                <router-link to="/profile">{{username}}</router-link>
+                <router-link to="/" v-on:click.native="signOut">Sign Out</router-link>
             </template>
             <template v-else>
-                <a href="/registration">Register</a>
-                <a href="/signIn">Sign In</a>
+                <router-link to="/registration">Register</router-link>
+                <router-link to="/signIn">Sign In</router-link>
             </template>
         </div>
         <div class="menu">
-            <a href="/">Home</a>
+            <router-link to="/">Home</router-link>
         </div>
     </div>
 </template>
 
 <script>
-  import { signOutUser } from '../../services/UserService';
+  import { signOutUser } from '../services/UserService';
   import { mapState } from 'vuex'
 
   export default {

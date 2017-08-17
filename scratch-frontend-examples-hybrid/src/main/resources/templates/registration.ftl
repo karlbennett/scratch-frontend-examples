@@ -1,18 +1,18 @@
 <#import "layout.ftl" as m>
-<@m.layout title="Simpe Webapp (Sign In)" heading="Sign In">
+<@m.layout title="Simple Webapp (Registration)" heading="Registration">
 <p>
-    Sign into your account.
+    Register a new account with your choice of username and password.
 </p>
 
 <form class="form" method="post">
     <div class="input">
-        <label for="username">Username</label><input id="username" name="username" type="text">
+        <label for="username">Username</label><input id="username" name="username">
     </div>
     <div class="input">
         <label for="password">Password</label><input id="password" name="password" type="password">
     </div>
     <div class="input">
-        <input type="submit" value="Sign In">
+        <input type="submit" value="Register">
     </div>
 </form>
 </@m.layout>

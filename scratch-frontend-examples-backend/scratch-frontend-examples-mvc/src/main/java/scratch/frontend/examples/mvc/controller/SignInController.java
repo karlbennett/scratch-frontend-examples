@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SignInController extends HasUsernameController {
 
     public SignInController() {
-        super("signIn");
+        super("sign-in");
     }
 }

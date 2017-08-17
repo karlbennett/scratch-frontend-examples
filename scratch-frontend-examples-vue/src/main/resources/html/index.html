@@ -8,7 +8,19 @@
     <title>Simple Webapp (Vue)</title>
 </head>
 <body>
-<div id="vue-app"></div>
+<!-- The v-cloak directive will display the div when Vue has finished rendering it. This stops FOUC and flashes of -->
+<!-- template variables. The main.scss file contains styling to initially hide the div. -->
+<div id="vue-app" v-cloak>
+    <div class="body">
+        <page-menu></page-menu>
+
+        <div class="content-container">
+            <h1 class="main-heading">{{heading}}</h1>
+
+            <router-view></router-view>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="/script/bundle.js"></script>
 </body>
 </html>

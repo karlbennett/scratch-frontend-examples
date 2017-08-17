@@ -1,16 +1,16 @@
 <template>
-    <page-layout heading="Simple Webapp">
-        <p>
-            Welcome to this Simple Webapp.
-        </p>
-    </page-layout>
+    <p>
+        <page-heading>Simple Webapp</page-heading>
+
+        Welcome to this Simple Webapp.
+    </p>
 </template>
 
 <script>
-  import PageLayout from '../layouts/PageLayout/PageLayout.vue'
+  import PageHeading from '../components/PageHeading.vue';
 
   export default {
     name: 'home',
-    components: { PageLayout }
+    components: { PageHeading }
   }
 </script>

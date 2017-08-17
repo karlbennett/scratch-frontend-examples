@@ -1,20 +1,20 @@
 <template>
-    <page-layout :heading="username">
-        <p>
-            This is your profile page. Here you can edit your account settings.
-        </p>
-    </page-layout>
+    <p>
+        <page-heading>{{username}}</page-heading>
+
+        This is your profile page. Here you can edit your account settings.
+    </p>
 </template>
 
 <script>
+  import PageHeading from '../components/PageHeading.vue';
   import { mapState } from 'vuex'
-  import PageLayout from '../layouts/PageLayout/PageLayout.vue'
 
   export default {
     name: 'profile',
+    components: { PageHeading },
     computed: mapState([
       'username'
-    ]),
-    components: { PageLayout }
+    ])
   }
 </script>

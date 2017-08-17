@@ -1,5 +1,7 @@
 <template>
-    <page-layout heading="Registration">
+    <div class="registration">
+        <page-heading>Registration</page-heading>
+
         <p>
             Register a new account with your choice of username and password.
         </p>
@@ -15,29 +17,27 @@
                 <input type="submit" value="Register">
             </div>
         </form>
-    </page-layout>
+    </div>
 </template>
 
 <script>
-  import PageLayout from '../layouts/PageLayout/PageLayout.vue'
+  import PageHeading from '../components/PageHeading.vue';
   import { registerUser } from '../services/UserService';
-  import page from 'page';
 
   export default {
     name: 'registration',
+    components: { PageHeading },
     data: () => ({
       username: '',
       password: ''
     }),
-    components: { PageLayout },
     methods: {
       register(event) {
         event.preventDefault();
         registerUser(
           { username: this.username, password: this.password },
-          () => page('/registrationSuccess'),
-          () => {
-          }
+          () => this.$router.push('/registrationSuccess'),
+          () => {}
         )
       }
     }

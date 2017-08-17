@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomePageController extends HasUsernameController {
 
     public HomePageController() {
-        super("homepage");
+        super("home");
     }
 }

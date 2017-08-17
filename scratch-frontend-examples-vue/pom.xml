@@ -107,7 +107,7 @@
                         </goals>
                         <configuration>
                             <arguments>
-                                --output-path ${project.build.outputDirectory}/javascript --progress --colors
+                                --output-path ${project.build.outputDirectory} --progress --colors
                                 --watch --env.profiles=${webpack.profile}
                             </arguments>
                         </configuration>

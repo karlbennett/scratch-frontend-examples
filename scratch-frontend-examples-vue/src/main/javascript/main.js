@@ -1,8 +1,10 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
-import page from 'page';
+import Vuex, { mapState } from 'vuex';
+import VueRouter from 'vue-router';
 import mutations from './store/mutations';
 import actions from './store/actions';
+
+import PageMenu from './components/PageMenu.vue';
 import Home from './pages/Home.vue';
 import SignIn from './pages/SignIn.vue';
 import Registration from './pages/Registration.vue';
@@ -13,9 +15,11 @@ import NotFound from './pages/NotFound.vue';
 import './main.scss';
 
 Vue.use(Vuex);
+Vue.use(VueRouter);
 
 const store = new Vuex.Store({
   state: {
+    heading: '',
     username: '',
     loaded: false
   },
@@ -23,26 +27,27 @@ const store = new Vuex.Store({
   actions
 });
 
-// eslint-disable-next-line no-new
-const app = new Vue({
-  el: '#vue-app',
-  store,
-  data: {
-    ViewComponent: { render: h => h('div', 'loading...') }
-  },
-  render(h) {
-    return h(this.ViewComponent);
-  }
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    { path: '/', component: Home },
+    { path: '/signIn', component: SignIn },
+    { path: '/registration', component: Registration },
+    { path: '/registrationSuccess', component: RegistrationSuccess },
+    { path: '/profile', component: Profile },
+    { path: '*', component: NotFound },
+  ]
 });
 
-/* eslint-disable no-return-assign */
-page('/', () => app.ViewComponent = Home);
-page('/signIn', () => app.ViewComponent = SignIn);
-page('/registration', () => app.ViewComponent = Registration);
-page('/registrationSuccess', () => app.ViewComponent = RegistrationSuccess);
-page('/profile', () => app.ViewComponent = Profile);
-page('*', () => app.ViewComponent = NotFound);
-/* eslint-enable no-return-assign */
-page();
+// eslint-disable-next-line no-new
+new Vue({
+  el: '#vue-app',
+  store,
+  router,
+  computed: mapState([
+    'heading'
+  ]),
+  components: { PageMenu }
+});
 
 store.dispatch('requestUser');

@@ -12,5 +12,9 @@ export default {
         state.loaded = true;
       })
     );
+  },
+  updateHeading(context, { heading }) {
+    // eslint-disable-next-line no-return-assign
+    context.commit('callback', state => state.heading = heading);
   }
 };
