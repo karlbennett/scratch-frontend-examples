@@ -60,34 +60,58 @@
     <build>
         <plugins>
             <plugin>
-                <!-- This will carry out a coverage check for the unit tests and cause the build to fail if the coverage -->
-                <!-- is less than 100%. -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
+                <!-- This will carry out a coverage check for the unit tests and cause the build to fail if the -->
+                <!-- coverage is less than 100%. -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
                 <configuration>
-                    <check>
-                        <totalBranchRate>100</totalBranchRate>
-                        <totalLineRate>100</totalLineRate>
-                    </check>
-                    <formats>
-                        <format>xml</format>
-                        <format>html</format>
-                    </formats>
-                    <quiet>true</quiet>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>**/*Configuration.class</exclude>
-                            <exclude>**/ServletApplication.class</exclude>
-                        </excludes>
-                    </instrumentation>
+                    <excludes>
+                        <exclude>**/*Configuration.*</exclude>
+                        <exclude>**/*Application.*</exclude>
+                        <!-- Unfortunately Jacoco tries to instrument some dependencies and this dependency contains -->
+                        <!-- a class with a method that is too large to instrument. -->
+                        <exclude>**com.steadystate*</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>pre-unit-test</id>
                         <goals>
-                            <goal>cobertura</goal>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
                             <goal>check</goal>
                         </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>CLASS</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.00</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.00</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
