@@ -1,9 +1,14 @@
 <link rel="import" href="/webjars/polymer/1.8.0/polymer.html">
-<link rel="import" href="/components/dynamic/page-menu">
+<link rel="import" href="/components/dynamic/page-sign-in">
 
 <dom-module id="page-layout">
     <template>
-        <page-menu></page-menu>
+        <div class="header-container">
+            <page-sign-in></page-sign-in>
+            <div class="menu">
+                <a href="/">Home</a>
+            </div>
+        </div>
 
         <div class="content-container">
             <h1 class="main-heading">[[heading]]</h1>

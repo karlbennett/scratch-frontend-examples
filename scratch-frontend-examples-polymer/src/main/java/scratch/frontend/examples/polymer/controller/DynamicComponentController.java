@@ -15,9 +15,9 @@ public class DynamicComponentController {
 
     static final String DYNAMIC_COMPONENT_PATH = "components/dynamic/";
 
-    @RequestMapping("/page-menu")
-    public ModelAndView pageHeader(Principal principal) {
-        final String path = DYNAMIC_COMPONENT_PATH + "page-menu";
+    @RequestMapping("/page-sign-in")
+    public ModelAndView pageSignIn(Principal principal) {
+        final String path = DYNAMIC_COMPONENT_PATH + "page-sign-in";
         if (principal == null) {
             return new ModelAndView(path);
         }

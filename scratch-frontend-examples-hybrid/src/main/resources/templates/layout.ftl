@@ -3,21 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="/webjars/webcomponentsjs/0.7.24/webcomponents-lite.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/all.css">
+    <link rel="import" href="/components/page-sign-in">
 
     <title>${title}</title>
 </head>
 <body>
 <div class="header-container">
-    <div class="signin">
-        <#if username??>
-            <a href="/profile">${username}</a>
-            <a href="/signOut">Sign Out</a>
-        <#else>
-            <a href="/registration">Register</a>
-            <a href="/signIn">Sign In</a>
-        </#if>
-    </div>
+    <page-sign-in></page-sign-in>
     <div class="menu">
         <a href="/">Home</a>
     </div>

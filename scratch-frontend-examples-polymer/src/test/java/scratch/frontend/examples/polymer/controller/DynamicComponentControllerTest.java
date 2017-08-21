@@ -34,10 +34,10 @@ public class DynamicComponentControllerTest {
         given(principal.getName()).willReturn(username);
 
         // When
-        final ModelAndView actual = controller.pageHeader(principal);
+        final ModelAndView actual = controller.pageSignIn(principal);
 
         // Then
-        assertThat(actual.getViewName(), equalTo(DYNAMIC_COMPONENT_PATH + "page-menu"));
+        assertThat(actual.getViewName(), equalTo(DYNAMIC_COMPONENT_PATH + "page-sign-in"));
         assertThat(actual.getModel(), hasEntry("username", username));
     }
 
@@ -45,10 +45,10 @@ public class DynamicComponentControllerTest {
     public void canRequestAPageHeaderComponentWhileNotLoggedIn() {
 
         // When
-        final ModelAndView actual = controller.pageHeader(null);
+        final ModelAndView actual = controller.pageSignIn(null);
 
         // Then
-        assertThat(actual.getViewName(), equalTo(DYNAMIC_COMPONENT_PATH + "page-menu"));
+        assertThat(actual.getViewName(), equalTo(DYNAMIC_COMPONENT_PATH + "page-sign-in"));
         assertThat(actual.getModel().size(), equalTo(0));
     }
 }

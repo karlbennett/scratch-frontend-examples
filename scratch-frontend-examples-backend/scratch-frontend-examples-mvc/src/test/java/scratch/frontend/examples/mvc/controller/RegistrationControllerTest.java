@@ -2,14 +2,10 @@ package scratch.frontend.examples.mvc.controller;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.web.servlet.ModelAndView;
 import scratch.frontend.examples.data.UserRepository;
 import scratch.frontend.examples.domain.User;
 
-import java.security.Principal;
-
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -32,19 +28,11 @@ public class RegistrationControllerTest {
     @SuppressWarnings("unchecked")
     public void Can_request_the_registration_page() {
 
-        final Principal principal = mock(Principal.class);
-
-        final String username = someString();
-
-        // Given
-        given(principal.getName()).willReturn(username);
-
         // When
-        final ModelAndView actual = controller.request(principal);
+        final String actual = controller.request();
 
         // Then
-        assertThat(actual.getViewName(), equalTo("registration"));
-        assertThat(actual.getModel(), hasEntry("username", username));
+        assertThat(actual, equalTo("registration"));
         verifyZeroInteractions(userRepository);
     }
 
@@ -71,19 +59,11 @@ public class RegistrationControllerTest {
     @SuppressWarnings("unchecked")
     public void Can_request_the_registration_success_page() {
 
-        final Principal principal = mock(Principal.class);
-
-        final String username = someString();
-
-        // Given
-        given(principal.getName()).willReturn(username);
-
         // When
-        final ModelAndView actual = controller.success(principal);
+        final String actual = controller.success();
 
         // Then
-        assertThat(actual.getViewName(), equalTo("registration-success"));
-        assertThat(actual.getModel(), hasEntry("username", username));
+        assertThat(actual, equalTo("registration-success"));
         verifyZeroInteractions(userRepository);
     }
 }
