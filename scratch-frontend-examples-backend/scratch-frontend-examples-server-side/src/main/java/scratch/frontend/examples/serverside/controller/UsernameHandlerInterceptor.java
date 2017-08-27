@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mvc.controller;
+package scratch.frontend.examples.serverside.controller;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

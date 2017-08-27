@@ -34,7 +34,7 @@
         <module>scratch-frontend-examples-application</module>
         <module>scratch-frontend-examples-data</module>
         <module>scratch-frontend-examples-security</module>
-        <module>scratch-frontend-examples-mvc</module>
+        <module>scratch-frontend-examples-server-side</module>
         <module>scratch-frontend-examples-services</module>
     </modules>
 </project>

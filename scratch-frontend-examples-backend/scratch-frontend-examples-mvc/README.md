@@ -1,2 +1,0 @@
-scratch-frontend-examples-mvc
-=============================

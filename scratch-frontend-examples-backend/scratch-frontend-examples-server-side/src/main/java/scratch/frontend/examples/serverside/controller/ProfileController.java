@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mvc.controller;
+package scratch.frontend.examples.serverside.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

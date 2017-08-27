@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mvc;
+package scratch.frontend.examples.serverside;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

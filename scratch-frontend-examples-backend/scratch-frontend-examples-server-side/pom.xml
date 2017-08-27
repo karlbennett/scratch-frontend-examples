@@ -24,7 +24,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>scratch-frontend-examples-mvc</artifactId>
+    <artifactId>scratch-frontend-examples-server-side</artifactId>
 
     <packaging>jar</packaging>
 

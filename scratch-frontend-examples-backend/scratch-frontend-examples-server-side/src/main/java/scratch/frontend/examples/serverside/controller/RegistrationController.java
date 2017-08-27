@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mvc.controller;
+package scratch.frontend.examples.serverside.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -63,7 +63,7 @@
         </dependency>
         <dependency>
             <groupId>scratch</groupId>
-            <artifactId>scratch-frontend-examples-mvc</artifactId>
+            <artifactId>scratch-frontend-examples-server-side</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

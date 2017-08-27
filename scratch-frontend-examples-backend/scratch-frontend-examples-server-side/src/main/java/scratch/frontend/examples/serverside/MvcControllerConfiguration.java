@@ -1,4 +1,4 @@
-package scratch.frontend.examples.mvc;
+package scratch.frontend.examples.serverside;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +7,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import scratch.frontend.examples.data.UserRepository;
-import scratch.frontend.examples.mvc.controller.ProfileUserArgumentResolver;
-import scratch.frontend.examples.mvc.controller.UsernameHandlerInterceptor;
+import scratch.frontend.examples.serverside.controller.ProfileUserArgumentResolver;
+import scratch.frontend.examples.serverside.controller.UsernameHandlerInterceptor;
 
 import java.util.List;
 
