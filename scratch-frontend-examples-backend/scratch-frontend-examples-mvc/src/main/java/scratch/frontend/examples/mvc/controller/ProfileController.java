@@ -13,6 +13,6 @@ public class ProfileController {
 
     @RequestMapping
     public ModelAndView profile(User user) {
-        return new ModelAndView("profile", singletonMap("username", user.getUsername()));
+        return new ModelAndView("profile", singletonMap("user", user));
     }
 }
