@@ -24,10 +24,10 @@ public class PubliclyCachedHandlerInterceptor extends HandlerInterceptorAdapter 
 
     @Override
     public void postHandle(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            Object handler,
-            ModelAndView modelAndView
+        HttpServletRequest request,
+        HttpServletResponse response,
+        Object handler,
+        ModelAndView modelAndView
     ) throws Exception {
         if (cachedPaths.contains(request.getServletPath())) {
             response.setHeader("Cache-Control", format("max-age=%d", maxAgeUnit.toSeconds(maxAge)));

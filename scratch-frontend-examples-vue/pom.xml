@@ -50,6 +50,27 @@
                 <webpack.profile>prod</webpack.profile>
             </properties>
         </profile>
+        <profile>
+            <id>chrome-headless</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Tell maven to scan the scratch-frontend-examples-acceptance dependency for integration tests. -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <dependenciesToScan>
+                                <dependency>scratch:scratch-frontend-examples-acceptance</dependency>
+                            </dependenciesToScan>
+                            <argLine>-Dweb.driver=chrome-headless</argLine>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>
@@ -128,17 +149,6 @@
                 <!-- Enable the Spring Boot plugin so that the artifact that is built is an executable WAR. -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <!-- Tell maven to scan the scratch-frontend-examples-acceptance dependency for integration tests. -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <dependenciesToScan>
-                        <dependency>scratch:scratch-frontend-examples-acceptance</dependency>
-                    </dependenciesToScan>
-                    <argLine>-Dweb.driver=chrome-headless</argLine>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -37,6 +37,14 @@ public class SeleniumConfiguration {
             return new ChromeDriver(options);
         }
 
+        if ("chrome-docker".equals(webDriver)) {
+            final ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            return new ChromeDriver(options);
+        }
+
         if ("firefox".equals(webDriver)) {
             return new FirefoxDriver();
         }

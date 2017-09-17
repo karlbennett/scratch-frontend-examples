@@ -55,6 +55,24 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>chrome-docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Tell maven to scan the scratch-frontend-examples-acceptance dependency for integration tests. -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <dependenciesToScan>
+                                <dependency>scratch:scratch-frontend-examples-acceptance</dependency>
+                            </dependenciesToScan>
+                            <argLine>-Dweb.driver=chrome-docker</argLine>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>

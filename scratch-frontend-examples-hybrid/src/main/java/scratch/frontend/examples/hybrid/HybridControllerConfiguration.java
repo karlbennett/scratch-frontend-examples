@@ -28,15 +28,15 @@ public class HybridControllerConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/components/page-sign-in")
-                .setViewName("/components/page-sign-in");
+            .setViewName("/components/page-sign-in");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").setCacheControl(maxAge(maxAge, maxAgeUnit))
-                .addResourceLocations("classpath:/META-INF/resources/css/");
+            .addResourceLocations("classpath:/META-INF/resources/css/");
         registry.addResourceHandler("/webjars/**").setCacheControl(maxAge(maxAge, maxAgeUnit))
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+            .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     @Override
