@@ -157,6 +157,6 @@ public class ITSignIn {
         final String jwtCookie = actual.getHeaders().get("Set-Cookie").get(0);
         assertThat(jwtCookie, containsString("X-AUTH-TOKEN=;"));
         assertThat(jwtCookie, containsString("Max-Age=0;"));
-        assertThat(jwtCookie, containsString("path=/;"));
+        assertThat(jwtCookie, containsString("Path=/;"));
     }
 }
